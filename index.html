@@ -50,9 +50,9 @@ img,svg,canvas{max-width:100%}
 button{font-family:inherit}
 ::selection{background:rgba(168,177,138,.5)}
 /* ---------- app shell ---------- */
-.app{display:flex;min-height:100vh}
-.sidebar{width:var(--sidebar-w);background:linear-gradient(178deg,var(--olive-forest) 0%,var(--olive-darker) 100%);color:var(--cream);position:fixed;top:0;bottom:0;left:0;z-index:60;display:flex;flex-direction:column;transition:transform .28s ease;overflow-y:auto;overflow-x:hidden}
-.main{flex:1;margin-left:var(--sidebar-w);display:flex;flex-direction:column;min-width:0;min-height:100vh}
+.app{display:flex;min-height:100vh;position:relative}
+.sidebar{width:var(--sidebar-w);background:linear-gradient(178deg,var(--olive-forest) 0%,var(--olive-darker) 100%);color:var(--cream);position:relative;min-height:100vh;flex-shrink:0;z-index:60;display:flex;flex-direction:column;transition:transform .28s ease;overflow-y:auto;overflow-x:hidden}
+.main{flex:1;margin-left:0;display:flex;flex-direction:column;min-width:0;min-height:100vh}
 .brand{display:flex;align-items:center;gap:11px;padding:20px 18px 14px}
 .brand-logo{width:40px;height:40px;border-radius:11px;background:linear-gradient(145deg,var(--olive-deep),var(--olive-forest));display:grid;place-items:center;flex:none;box-shadow:inset 0 0 0 1px rgba(245,240,228,.18),0 4px 10px rgba(0,0,0,.25)}
 .brand-name{font-family:var(--font-serif);font-size:17px;line-height:1.15;color:var(--cream);font-weight:600}
@@ -194,20 +194,20 @@ input[type=range]{accent-color:var(--olive-deep);width:100%}
 .dash-hero{display:flex;gap:18px;align-items:flex-start;justify-content:space-between;flex-wrap:wrap;margin-bottom:20px}
 .dash-hero h2{font-size:clamp(22px,3.4vw,30px)}
 .stat-strip{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:12px;margin:18px 0 24px}
-.stat{background:var(--white);border:1px solid var(--line);border-radius:14px;padding:13px 15px;box-shadow:var(--shadow-sm)}
+.stat{background:var(--white);border:1px solid var(--line);border-radius:14px;padding:14px 16px;box-shadow:var(--shadow-sm);display:flex;flex-direction:column;justify-content:space-between;min-height:108px;transition:transform .15s,box-shadow .15s}.stat:hover{transform:translateY(-2px);box-shadow:var(--shadow)}
 .stat .v{font-family:var(--font-serif);font-size:22px;color:var(--olive-forest);font-weight:700}
 .stat .k{font-size:10.5px;letter-spacing:1.4px;text-transform:uppercase;color:var(--ink-soft);font-weight:700}
 .stat .d{font-size:11px;color:var(--gold-dark);font-weight:600}
 .lab-cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(270px,1fr));gap:18px;margin-bottom:26px}
-.lab-card{position:relative;border-radius:20px;overflow:hidden;color:var(--cream);min-height:230px;display:flex;flex-direction:column;justify-content:flex-end;padding:20px;box-shadow:var(--shadow);border:1px solid rgba(42,54,24,.3);transition:transform .2s,box-shadow .2s;cursor:pointer;text-align:left}
+.lab-card{position:relative;border-radius:20px;overflow:hidden;color:var(--cream);min-height:240px;display:flex;flex-direction:column;justify-content:flex-end;padding:22px;box-shadow:var(--shadow);border:1px solid rgba(42,54,24,.3);transition:transform .2s,box-shadow .2s;cursor:pointer;text-align:left}.lab-card:hover{transform:translateY(-4px);box-shadow:var(--shadow-lg)}
 .lab-card:hover{transform:translateY(-4px);box-shadow:var(--shadow-lg)}
 .lab-card .art{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
 .lab-card .scrim{position:absolute;inset:0;background:linear-gradient(180deg,rgba(42,54,24,.05) 20%,rgba(42,54,24,.82) 82%)}
 .lab-card .content{position:relative;display:flex;flex-direction:column;gap:6px}
 .lab-card .tag{color:var(--gold)}
 .lab-card h3{color:var(--cream);font-size:22px}
-.lab-card p{margin:0;font-size:12.5px;color:rgba(246,240,228,.8);max-width:26em}
-.lab-card .meta{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-top:10px}
+.lab-card p{margin:0;font-size:12.5px;color:rgba(246,240,228,.8);max-width:26em;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+.lab-card .meta{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-top:auto;padding-top:10px}
 .lab-card .progress{background:rgba(246,240,228,.22);height:7px}
 .lab-card .progress>i{background:var(--gold)}
 .pill-btn{background:var(--gold);color:#2E2408;border:0;border-radius:999px;padding:8px 16px;font-weight:700;font-size:12px;cursor:pointer;box-shadow:var(--shadow-sm)}
@@ -221,34 +221,35 @@ input[type=range]{accent-color:var(--olive-deep);width:100%}
 .proj-mini b{font-size:13px;display:block}
 .proj-mini span{font-size:11px;color:var(--ink-soft)}
 /* ---------- laboratory layout ---------- */
-.lab-toolbar{display:flex;align-items:center;gap:8px;flex-wrap:wrap;background:var(--white);border:1px solid var(--line);border-radius:14px;padding:9px 12px;box-shadow:var(--shadow-sm);margin-bottom:12px}
+.lab-toolbar{display:flex;align-items:center;gap:8px;flex-wrap:wrap;background:var(--white);border:1px solid var(--line);border-radius:14px;padding:10px 14px;box-shadow:var(--shadow-sm);margin-bottom:14px}
 .lab-toolbar .sep{width:1px;height:24px;background:var(--line-strong);margin:0 3px;flex:none}
-.lab-body{display:grid;grid-template-columns:252px minmax(0,1fr) 296px;gap:12px;align-items:start}
-.lib{background:var(--white);border:1px solid var(--line);border-radius:14px;box-shadow:var(--shadow-sm);overflow:hidden;display:flex;flex-direction:column;max-height:calc(100vh - 190px);position:sticky;top:76px}
-.lib-head{padding:11px 13px;border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:space-between}
+.lab-body{display:grid;grid-template-columns:264px minmax(0,1fr) 314px;gap:14px;align-items:stretch}
+.lib{background:var(--white);border:1px solid var(--line);border-radius:14px;box-shadow:var(--shadow-sm);overflow:hidden;display:flex;flex-direction:column;height:calc(100vh - 180px);min-height:550px;position:sticky;top:76px}
+.lib-head{padding:12px 14px;border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;background:var(--ivory)}
 .lib-head b{font-size:13px;letter-spacing:.6px}
-.lib-scroll{overflow-y:auto;padding:8px 10px 12px;-webkit-overflow-scrolling:touch}
-.lib-cat{font-size:10px;letter-spacing:1.8px;text-transform:uppercase;color:var(--ink-soft);font-weight:700;margin:12px 4px 6px}
-.lib-item{display:flex;align-items:center;gap:9px;width:100%;padding:8px 10px;border-radius:11px;border:1px solid var(--line);background:var(--ivory);cursor:grab;margin:4px 0;font-size:12.5px;font-weight:600;color:var(--graphite);transition:background .14s,border .14s;text-align:left;touch-action:none;user-select:none;-webkit-user-select:none}
+.lib-scroll{overflow-y:auto;padding:10px 12px 16px;-webkit-overflow-scrolling:touch;flex:1}
+.lib-cat{font-size:10px;letter-spacing:1.8px;text-transform:uppercase;color:var(--ink-soft);font-weight:700;margin:14px 4px 6px}
+.lib-item{display:flex;align-items:center;gap:9px;width:100%;padding:8px 11px;border-radius:11px;border:1px solid var(--line);background:var(--ivory);cursor:grab;margin:4px 0;font-size:12.5px;font-weight:600;color:var(--graphite);transition:background .14s,border .14s;text-align:left;touch-action:none;user-select:none;-webkit-user-select:none}
 .lib-item:hover{background:var(--cream);border-color:var(--sage)}
 .lib-item.armed{outline:2px solid var(--gold);background:rgba(197,166,106,.14)}
 .lib-item svg{flex:none;color:var(--olive-deep)}
-.stage{position:relative;background:
+.stage{display:flex;flex-direction:column;position:relative;background:
   radial-gradient(circle at 30% 20%,rgba(168,177,138,.16),transparent 50%),
   linear-gradient(160deg,var(--cream),var(--beige) 120%);
-  border:1px solid var(--line-strong);border-radius:14px;overflow:hidden;min-height:420px;touch-action:none}
-.stage canvas{display:block;width:100%;height:100%;touch-action:none;cursor:crosshair}
-.stage-hint{position:absolute;left:12px;bottom:12px;background:rgba(48,51,41,.78);color:var(--cream);font-size:11px;padding:6px 11px;border-radius:9px;pointer-events:none;max-width:75%}
+  border:1px solid var(--line-strong);border-radius:14px;overflow:hidden;height:calc(100vh - 180px);min-height:550px;touch-action:none;box-shadow:inset 0 1px 3px rgba(0,0,0,.04)}
+.stage-canvas-wrap{flex:1;position:relative;min-height:0;width:100%;height:100%;overflow:hidden}
+.stage-canvas-wrap canvas{display:block;width:100%;height:100%;touch-action:none;cursor:crosshair}
+.stage-hint{position:absolute;left:14px;bottom:14px;background:rgba(48,51,41,.88);backdrop-filter:blur(6px);color:var(--cream);font-size:11.5px;padding:7px 14px;border-radius:999px;pointer-events:none;max-width:75%;box-shadow:var(--shadow-sm);border:1px solid rgba(255,255,255,.1)}
 .stage-hint b{color:var(--gold)}
-.zoom-hud{position:absolute;right:12px;bottom:12px;display:flex;gap:5px;background:rgba(246,240,228,.92);border:1px solid var(--line);border-radius:11px;padding:4px;box-shadow:var(--shadow-sm)}
+.zoom-hud{position:absolute;right:14px;bottom:14px;display:flex;gap:5px;background:rgba(246,240,228,.94);backdrop-filter:blur(6px);border:1px solid var(--line);border-radius:11px;padding:4px;box-shadow:var(--shadow-sm)}
 .zoom-hud button{width:30px;height:30px;border:0;border-radius:8px;background:transparent;color:var(--olive-deep);cursor:pointer;display:grid;place-items:center}
 .zoom-hud button:hover{background:var(--cream)}
 .zoom-hud span{font-size:10.5px;align-self:center;color:var(--ink-soft);min-width:38px;text-align:center}
-.panel{background:var(--white);border:1px solid var(--line);border-radius:14px;box-shadow:var(--shadow-sm);overflow:hidden;display:flex;flex-direction:column;max-height:calc(100vh - 190px);position:sticky;top:76px}
+.panel{background:var(--white);border:1px solid var(--line);border-radius:14px;box-shadow:var(--shadow-sm);overflow:hidden;display:flex;flex-direction:column;height:calc(100vh - 180px);min-height:550px;position:sticky;top:76px}
 .panel-tabs{display:flex;border-bottom:1px solid var(--line);background:var(--cream)}
-.panel-tabs button{flex:1;border:0;background:transparent;padding:9px 4px;font-size:11px;font-weight:700;letter-spacing:.5px;color:var(--ink-soft);cursor:pointer;border-bottom:2px solid transparent}
-.panel-tabs button.active{color:var(--olive-forest);border-bottom-color:var(--gold);background:rgba(255,255,255,.5)}
-.panel-body{overflow-y:auto;padding:12px;-webkit-overflow-scrolling:touch;flex:1}
+.panel-tabs button{flex:1;border:0;background:transparent;padding:10px 4px;font-size:10px;font-weight:700;letter-spacing:.6px;color:var(--ink-soft);cursor:pointer;border-bottom:2px solid transparent;transition:all .15s}
+.panel-tabs button.active{color:var(--olive-forest);border-bottom-color:var(--gold);background:rgba(255,255,255,.65)}
+.panel-body{overflow-y:auto;padding:14px;-webkit-overflow-scrolling:touch;flex:1}
 .insp-row{display:flex;align-items:center;justify-content:space-between;gap:8px;padding:7px 0;border-bottom:1px dashed var(--line);font-size:12.5px}
 .insp-row:last-child{border-bottom:0}
 .insp-row .k{color:var(--ink-soft);font-weight:600}
@@ -265,11 +266,194 @@ input[type=range]{accent-color:var(--olive-deep);width:100%}
 .issue.error{background:rgba(147,64,47,.09);color:var(--brick);border:1px solid rgba(147,64,47,.25)}
 .issue.warn{background:rgba(197,166,106,.12);color:#7A5A22;border:1px solid rgba(197,166,106,.4)}
 .issue.info{background:rgba(137,150,107,.1);color:var(--olive-forest);border:1px solid rgba(137,150,107,.3)}
-.expt{border:1px solid var(--line);border-radius:11px;padding:9px 11px;margin-bottom:8px;font-size:11.8px;background:var(--ivory)}
-.expt b{font-size:12px;color:var(--olive-forest)}
 .ghost-comp{position:fixed;z-index:400;pointer-events:none;background:var(--olive-deep);color:var(--cream);font-size:11.5px;font-weight:700;padding:7px 12px;border-radius:10px;box-shadow:var(--shadow-lg);display:none;align-items:center;gap:7px;transform:translate(-50%,-130%)}
 .ghost-comp svg{color:var(--gold)}
 #panel-toggle{display:none}
+
+/* ---------- interactive experiment assistant & cards ---------- */
+.stage-assistant{position:relative;width:100%;flex:none;background:rgba(255,255,255,.98);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-bottom:1.5px solid var(--line-strong);box-shadow:0 2px 8px rgba(0,0,0,.04);padding:8px 14px;font-size:12px;transition:all .2s ease;z-index:20}
+.stage-assistant.collapsed{padding:6px 14px}
+.stage-assistant.collapsed .asst-body{display:none}
+.asst-head{display:flex;align-items:center;justify-content:space-between;gap:8px;flex-wrap:wrap}
+.asst-title-area{display:flex;align-items:center;gap:8px;flex-wrap:wrap;min-width:0}
+.asst-title{font-size:13px;font-weight:700;color:var(--olive-forest);display:flex;align-items:center;gap:6px}
+.asst-tier{font-size:9px;letter-spacing:1px;font-weight:800;text-transform:uppercase;padding:2px 7px;border-radius:999px;background:rgba(197,166,106,.2);color:var(--gold-dark);border:1px solid rgba(197,166,106,.4)}
+.asst-step-chip{display:inline-flex;align-items:center;gap:5px;padding:3px 9px;border-radius:999px;font-size:11px;font-weight:600;border:1px solid var(--line-strong);background:var(--ivory);color:var(--olive-deep)}
+.asst-step-chip.place{background:rgba(197,166,106,.15);border-color:var(--gold);color:var(--gold-dark)}
+.asst-step-chip.wire{background:rgba(70,85,43,.12);border-color:var(--olive-deep);color:var(--olive-deep)}
+.asst-step-chip.ok{background:rgba(137,150,107,.2);border-color:var(--sage);color:var(--olive-forest)}
+.asst-actions{display:flex;align-items:center;gap:5px;margin-left:auto}
+.asst-toggle{background:none;border:0;cursor:pointer;color:var(--ink-soft);padding:3px;border-radius:6px;display:grid;place-items:center}
+.asst-toggle:hover{background:var(--cream);color:var(--olive-deep)}
+.asst-body{margin-top:7px;padding-top:7px;border-top:1px dashed var(--line)}
+.asst-grid-row{display:grid;grid-template-columns:minmax(220px,1fr) minmax(260px,1.4fr);gap:12px;align-items:start}
+@media(max-width:960px){.asst-grid-row{grid-template-columns:1fr}}
+.asst-col-title{font-size:10px;font-weight:800;letter-spacing:1px;text-transform:uppercase;color:var(--olive-forest);margin-bottom:4px;display:flex;align-items:center;gap:5px}
+.asst-desc{margin:0 0 6px;font-size:11.5px;color:var(--ink-soft);line-height:1.4}
+.asst-sec-label{font-size:10px;font-weight:800;letter-spacing:1.2px;text-transform:uppercase;color:var(--olive-forest);margin:6px 0 3px}
+.asst-elems{display:flex;gap:5px;flex-wrap:wrap}
+.asst-elem-tag{display:inline-flex;align-items:center;gap:5px;padding:3px 8px;border-radius:7px;font-size:11px;font-weight:600;border:1px solid var(--line)}
+.asst-elem-tag.ok{background:rgba(137,150,107,.18);color:var(--olive-forest);border-color:var(--sage)}
+.asst-elem-tag.missing{background:rgba(197,166,106,.15);color:var(--gold-dark);border-color:rgba(197,166,106,.45)}
+.asst-add-btn{background:none;border:0;color:var(--olive-deep);font-weight:700;cursor:pointer;padding:0 3px;border-radius:4px;text-decoration:underline}
+.asst-add-btn:hover{background:rgba(70,85,43,.1)}
+.asst-wires{display:flex;flex-direction:column;gap:3px;max-height:85px;overflow-y:auto;padding-right:2px}
+.asst-wire{display:flex;gap:6px;align-items:center;font-size:11px;padding:2px 0;border-bottom:1px dashed var(--line);color:var(--ink-soft)}
+.asst-wire:last-child{border-bottom:0}
+.asst-wire.done{color:var(--olive-forest);font-weight:600}
+.asst-wire.done svg{color:var(--olive-deep)}
+.asst-wire.current{color:var(--gold-dark);font-weight:700;background:rgba(197,166,106,.12);padding:2px 6px;border-radius:5px}
+.asst-success{background:linear-gradient(145deg,rgba(137,150,107,.2),rgba(197,166,106,.2));border:1.5px solid var(--sage);border-radius:9px;padding:6px 10px;margin-top:6px;text-align:center;color:var(--olive-forest);font-weight:700;display:flex;align-items:center;justify-content:center;gap:8px;font-size:11.5px}
+.asst-btn-bar{display:flex;gap:6px;flex-wrap:wrap;margin-top:7px}
+
+.expt-card{border:1px solid var(--line);border-radius:12px;padding:10px 11px;margin-bottom:8px;font-size:12px;background:var(--ivory);cursor:pointer;transition:all .15s;text-align:left;display:flex;flex-direction:column;gap:3px}
+.expt-card:hover{border-color:var(--gold);background:var(--cream);transform:translateY(-1px);box-shadow:var(--shadow-sm)}
+.expt-card.active{border-color:var(--gold);background:rgba(197,166,106,.16);box-shadow:0 0 0 1.5px var(--gold)}
+.expt-card b{font-size:12.5px;color:var(--olive-forest);display:flex;align-items:center;justify-content:space-between}
+.expt-card .e-tag{font-size:9px;letter-spacing:1px;font-weight:800;text-transform:uppercase;padding:2px 6px;border-radius:6px;background:var(--cream);color:var(--ink-soft);border:1px solid var(--line-strong)}
+.expt-card.active .e-tag{background:var(--gold);color:#2E2408;border-color:var(--gold)}
+.expt-card .desc{font-size:11.2px;color:var(--ink-soft);line-height:1.35}
+
+.exp-hub-card{background:var(--white);border:1px solid var(--line);border-radius:14px;padding:16px;box-shadow:var(--shadow-sm);display:flex;flex-direction:column;gap:8px;transition:all .15s;height:100%;justify-content:space-between}
+.exp-hub-card:hover{border-color:var(--gold);transform:translateY(-2px);box-shadow:var(--shadow)}
+.exp-hub-card h3{font-size:15px;display:flex;align-items:center;gap:7px;margin:0;color:var(--olive-forest)}
+.exp-hub-card .meta{display:flex;gap:6px;align-items:center;flex-wrap:wrap;margin-top:4px}
+.exp-hub-card .elements-pill{display:flex;gap:4px;flex-wrap:wrap;margin:6px 0}
+.exp-hub-card .pill{font-size:10.5px;padding:2px 7px;border-radius:6px;background:var(--cream);color:var(--ink-soft);border:1px solid var(--line-strong)}
+.exp-hub-card .acts{display:flex;gap:6px;margin-top:auto;padding-top:10px;border-top:1px dashed var(--line)}
+
+/* ---------- live guided targets & assistant styling ---------- */
+@keyframes guideTargetPulse {
+  0% { box-shadow: 0 0 0 0 rgba(197,166,106,.8); }
+  65% { box-shadow: 0 0 0 8px rgba(197,166,106,0); }
+  100% { box-shadow: 0 0 0 0 rgba(197,166,106,0); }
+}
+.lib-item.guided-target {
+  border-color: var(--gold) !important;
+  background: rgba(197,166,106,.18) !important;
+  animation: guideTargetPulse 1.6s infinite;
+  position: relative;
+  font-weight: 700;
+}
+.lib-item.guided-target::after {
+  content: 'PLACE NEXT';
+  display: inline-block;
+  font-size: 8px;
+  font-weight: 800;
+  letter-spacing: .6px;
+  background: var(--gold);
+  color: #2E2408;
+  padding: 2px 5px;
+  border-radius: 4px;
+  margin-left: auto;
+}
+.asst-step-card {
+  background: linear-gradient(145deg, rgba(255,255,255,0.95), rgba(246,240,228,0.92));
+  border: 1.5px solid var(--gold);
+  border-radius: 11px;
+  padding: 10px 12px;
+  margin: 8px 0;
+  box-shadow: 0 2px 8px rgba(197,166,106,0.18);
+}
+.asst-step-card.complete {
+  border-color: var(--sage);
+  background: linear-gradient(145deg, rgba(230,235,214,0.95), rgba(241,243,230,0.92));
+  box-shadow: 0 2px 8px rgba(137,150,107,0.2);
+}
+.asst-step-badge {
+  font-size: 9px;
+  font-weight: 800;
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
+  color: var(--gold-dark);
+  margin-bottom: 3px;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+.asst-step-card.complete .asst-step-badge {
+  color: var(--olive-forest);
+}
+.asst-step-title {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--olive-deep);
+  margin-bottom: 3px;
+}
+.asst-step-inst {
+  font-size: 11.5px;
+  color: var(--ink-soft);
+  line-height: 1.4;
+}
+
+/* ---------- welcome landing page ---------- */
+.welcome-hero {
+  position: relative;
+  overflow: hidden;
+  border-radius: 20px;
+  background: linear-gradient(140deg, #F1F4E6 0%, #E8EED9 50%, #DFE7CD 100%);
+  border: 1px solid var(--line-strong);
+  padding: 36px 38px;
+  box-shadow: var(--shadow-sm);
+  margin-bottom: 24px;
+}
+.welcome-hero h1 {
+  font-size: 32px;
+  line-height: 1.2;
+  color: var(--olive-deep);
+  margin: 12px 0 10px;
+  font-weight: 800;
+}
+.welcome-hero p.lead {
+  font-size: 15px;
+  color: var(--ink-soft);
+  max-width: 680px;
+  line-height: 1.55;
+  margin-bottom: 22px;
+}
+.welcome-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 16px;
+  margin-bottom: 24px;
+}
+.feature-card {
+  background: var(--white);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  transition: transform .15s, box-shadow .15s;
+}
+.feature-card:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow);
+  border-color: var(--sage);
+}
+.feature-card .feat-icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  background: rgba(137,150,107,0.18);
+  color: var(--olive-deep);
+  display: grid;
+  place-items: center;
+  margin-bottom: 4px;
+}
+.feature-card h3 {
+  font-size: 15px;
+  color: var(--olive-forest);
+  margin: 0;
+}
+.feature-card p {
+  font-size: 12.5px;
+  color: var(--ink-soft);
+  line-height: 1.45;
+  margin: 0;
+}
+
 /* ---------- aero tabs ---------- */
 .tabbar{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:16px}
 .tabbar button{display:inline-flex;gap:8px;align-items:center;border:1px solid var(--line-strong);background:var(--white);color:var(--graphite);padding:8px 15px;border-radius:999px;font-size:13px;font-weight:600;cursor:pointer;transition:all .15s}
@@ -313,7 +497,7 @@ input[type=range]{accent-color:var(--olive-deep);width:100%}
 .track-label{font-size:10.5px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--ink-soft)}
 /* ---------- projects ---------- */
 .proj-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(262px,1fr));gap:16px}
-.proj-card{display:flex;flex-direction:column;gap:9px}
+.proj-card{display:flex;flex-direction:column;gap:9px;height:100%;justify-content:space-between;min-height:210px}
 .proj-card .top{display:flex;justify-content:space-between;align-items:flex-start;gap:8px}
 .proj-card h3{font-size:16px}
 .proj-card .desc{font-size:12.3px;color:var(--ink-soft);min-height:2.4em}
@@ -330,17 +514,17 @@ input[type=range]{accent-color:var(--olive-deep);width:100%}
 .file-view{font-family:var(--mono);font-size:11.8px;background:var(--cream);border:1px solid var(--line-strong);border-radius:12px;padding:13px 15px;max-height:280px;overflow:auto;white-space:pre-wrap;word-break:break-word}
 /* ---------- achievements ---------- */
 .badge-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(148px,1fr));gap:13px}
-.badge-card{border:1px solid var(--line);border-radius:15px;padding:15px 12px;text-align:center;background:var(--white);box-shadow:var(--shadow-sm)}
+.badge-card{border:1px solid var(--line);border-radius:15px;padding:16px 12px;text-align:center;background:var(--white);box-shadow:var(--shadow-sm);display:flex;flex-direction:column;align-items:center;justify-content:space-between;min-height:165px;transition:transform .15s,box-shadow .15s}.badge-card:hover{transform:translateY(-2px);box-shadow:var(--shadow)}
 .badge-card .bic{width:52px;height:52px;margin:0 auto 9px;border-radius:50%;display:grid;place-items:center;background:linear-gradient(145deg,var(--beige),var(--cream));color:var(--ink-soft)}
 .badge-card.earned .bic{background:linear-gradient(145deg,var(--gold),var(--gold-dark));color:#2E2408;box-shadow:0 4px 12px rgba(197,166,106,.4)}
 .badge-card b{font-size:12.5px;display:block}
 .badge-card span{font-size:10.5px;color:var(--ink-soft)}
 .badge-card.earned{border-color:rgba(197,166,106,.5)}
-.mission-card{display:flex;gap:13px;padding:14px;border:1px solid var(--line);border-radius:15px;background:var(--white);box-shadow:var(--shadow-sm);margin-bottom:12px;align-items:flex-start}
+.mission-card{display:flex;gap:13px;padding:14px;border:1px solid var(--line);border-radius:15px;background:var(--white);box-shadow:var(--shadow-sm);margin-bottom:12px;align-items:center}
 .mission-card .num{font-family:var(--font-serif);font-size:21px;font-weight:700;color:var(--gold-dark);background:rgba(197,166,106,.14);border:1px solid rgba(197,166,106,.4);border-radius:12px;width:52px;height:52px;display:grid;place-items:center;flex:none}
 .mission-card.done{border-color:rgba(137,150,107,.5);background:linear-gradient(160deg,#F4F6EA,#EAF0DC)}
 .mission-card.done .num{color:var(--olive-forest);background:rgba(137,150,107,.2);border-color:var(--sage)}
-.mission-card h4{font-size:14.5px;margin-bottom:3px}
+.mission-card h4{font-size:14.5px;margin-bottom:3px;display:flex;align-items:center;gap:8px;flex-wrap:wrap}
 .mission-card .d{font-size:12px;color:var(--ink-soft)}
 .tier-pill{font-size:9px;letter-spacing:1.6px;font-weight:800;text-transform:uppercase;padding:3px 9px;border-radius:999px;background:var(--cream);color:var(--ink-soft);border:1px solid var(--line-strong)}
 .tier-pill.adv{background:rgba(197,166,106,.16);color:var(--gold-dark);border-color:rgba(197,166,106,.45)}
@@ -370,7 +554,7 @@ kbd{font-family:var(--mono);font-size:10.5px;background:var(--cream);border:1px 
   .panel-tabs button{padding:12px 4px;font-size:12px}
 }
 @media(max-width:960px){
-  .sidebar{transform:translateX(-102%)}
+  .sidebar{position:fixed;top:0;bottom:0;left:0;transform:translateX(-102%)}
   body.nav-open .sidebar{transform:none;box-shadow:var(--shadow-lg)}
   .main{margin-left:0}
   #nav-toggle{display:grid}
@@ -402,6 +586,7 @@ kbd{font-family:var(--mono);font-size:10.5px;background:var(--cream);border:1px 
 }
 </style>
 </head>
+<body>
 <script>
 'use strict';
 /* ============================================================
@@ -526,14 +711,55 @@ App.Store = {
       if (s && s.settings) Object.assign(fresh.settings, s.settings);
       s = fresh;
     }
+    if (!s.users) s.users = {};
+    if (!s.users['engineer@circuitverse.local']) {
+      s.users['engineer@circuitverse.local'] = {name: 'Circuit Engineer', email: 'engineer@circuitverse.local', createdAt: Date.now()};
+    }
+    // Guest exploration by default; preserve session if logged in
+    if (!s.session || !s.session.email) {
+      s.session = null;
+    }
     this.state = s;
     return s;
   },
   _t: null,
+  _quotaToastAt: 0,
   save() { clearTimeout(this._t); this._t = setTimeout(() => this.saveNow(), 250); },
+  pruneSessions(keep) { // drop oldest simulation recordings; returns how many were removed
+    const st = this.state;
+    if (!st || !Array.isArray(st.simSessions)) return 0;
+    const before = st.simSessions.length;
+    if (keep == null) keep = Math.max(5, Math.floor(before / 2));
+    st.simSessions.length = Math.min(before, keep);
+    return before - st.simSessions.length;
+  },
   saveNow() {
     try { localStorage.setItem(this.KEY, JSON.stringify(this.state)); }
-    catch (e) { try { App.UI.toast('Browser storage is full — export your data from Settings.', 'warn'); } catch (_) {} }
+    catch (e) {
+      // First aid: the usual culprit is a pile of old simulation recordings —
+      // prune them and retry once before blaming the user's browser.
+      let recovered = false;
+      try {
+        if (this.state && Array.isArray(this.state.simSessions) && this.state.simSessions.length > 5) {
+          const removed = this.pruneSessions();
+          localStorage.setItem(this.KEY, JSON.stringify(this.state));
+          recovered = true;
+          try { App.UI.toast('Storage was nearly full \u2014 ' + removed + ' old simulation recording(s) pruned to free space. Your projects and account are safe.', 'warn'); } catch (_) {}
+        }
+      } catch (_e) { /* still failing */ }
+      if (!recovered) {
+        // Distinguish blocked storage (private window / site data disabled) from a full quota
+        let blocked = false;
+        try { localStorage.setItem(this.KEY + '__probe', '1'); localStorage.removeItem(this.KEY + '__probe'); }
+        catch (_e2) { blocked = true; }
+        const msg = blocked
+          ? 'Browser storage is blocked (private window or site data disabled) \u2014 work cannot be saved. Export your data from Settings.'
+          : 'Browser storage is genuinely full \u2014 export your data from Settings, then use "Free up space" or "Clear everything" to continue.';
+        try {
+          if (!this._quotaToastAt || Date.now() - this._quotaToastAt > 60000) { this._quotaToastAt = Date.now(); App.UI.toast(msg, 'warn'); }
+        } catch (_) {}
+      }
+    }
   },
   exportAll() { return JSON.stringify(this.state, null, 2); },
   importAll(json) {
@@ -550,64 +776,136 @@ App.Bus = {
   emit(e, d) { (this.m[e] || []).forEach(f => { try { f(d); } catch (err) { console.error('bus', e, err); } }); }
 };
 
-/* ---------- authentication (local, hashed) ---------- */
+/* ---------- authentication (seamless guest exploration + save-gated sign in) ---------- */
 App.Auth = {
   current() {
-    const s = App.Store.state.session;
-    if (!s) return null;
-    if (s.guest) return {guest: true, name: 'Guest Explorer', email: null, pid: 'guest'};
-    const u = App.Store.state.users[s.email];
-    if (!u) { App.Store.state.session = null; return null; }
-    return {guest: false, name: u.name, email: u.email, pid: u.email};
+    const s = App.Store && App.Store.state ? App.Store.state.session : null;
+    if (s && s.email) {
+      const users = (App.Store && App.Store.state && App.Store.state.users) || {};
+      const u = users[s.email];
+      const name = (u && u.name) || s.name || 'Circuit Engineer';
+      return {guest: false, name, email: s.email, pid: s.pid || ('usr_' + s.email.replace(/[^a-zA-Z0-9]/g, '_'))};
+    }
+    return {guest: true, name: 'Guest Explorer', email: null, pid: 'guest'};
+  },
+  isLoggedIn() {
+    const c = this.current();
+    return !!(c && !c.guest && c.email);
   },
   validEmail(e) { return /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(e); },
-  register(name, email, pw) {
-    name = (name || '').trim(); email = (email || '').trim().toLowerCase();
-    if (name.length < 2) return {ok: false, msg: 'Please enter a display name (2+ characters).'};
-    if (!this.validEmail(email)) return {ok: false, msg: 'Please enter a valid email address.'};
-    if (!pw || pw.length < 8) return {ok: false, msg: 'Password must be at least 8 characters.'};
-    const users = App.Store.state.users;
-    if (users[email]) return {ok: false, msg: 'An account with this email already exists in this browser.'};
-    const salt = App.uid('s') + App.uid('k');
-    users[email] = {name, email, salt, hash: App.sha256(salt + '::' + pw), createdAt: Date.now()};
-    // migrate guest data (profile + projects) so guest work is not lost —
-    // applies when upgrading from a live guest session OR registering after logout
-    const P = App.Store.state.profiles;
-    if (P.guest) { P[email] = P.guest; P[email].pid = email; P[email].name = name; P[email].guest = false; delete P.guest; }
-    App.Store.state.projects.forEach(p => { if (p.owner === 'guest') p.owner = email; });
-    App.Store.state.session = {email};
-    App.Profile.ensure(email, name);
+  login(email, pw, name) {
+    email = (email || 'engineer@circuitverse.local').trim().toLowerCase();
+    name = (name || (App.Store.state.users[email] && App.Store.state.users[email].name) || 'Circuit Engineer').trim();
+    if (!App.Store.state.users) App.Store.state.users = {};
+    if (!App.Store.state.users[email]) {
+      App.Store.state.users[email] = {name, email, createdAt: Date.now()};
+    } else if (name) {
+      App.Store.state.users[email].name = name;
+    }
+    const pid = 'usr_' + email.replace(/[^a-zA-Z0-9]/g, '_');
+    App.Store.state.session = {email, name, pid};
+    App.Profile.ensure(pid, name);
     App.Store.save();
+    App.updateChrome(App.Router.current);
     return {ok: true};
   },
-  login(email, pw) {
-    email = (email || '').trim().toLowerCase();
-    const u = App.Store.state.users[email];
-    if (!u) return {ok: false, msg: 'No local account found for this email. Create one first.'};
-    if (App.sha256(u.salt + '::' + pw) !== u.hash) return {ok: false, msg: 'Incorrect password.'};
-    App.Store.state.session = {email};
-    App.Profile.ensure(email, u.name);
-    App.Store.save();
-    return {ok: true};
+  register(name, email, pw) {
+    return this.login(email, pw, name);
   },
   guest() {
-    App.Store.state.session = {guest: true, startedAt: Date.now()};
-    App.Profile.ensure('guest', 'Guest Explorer');
+    App.Store.state.session = null;
     App.Store.save();
+    App.updateChrome(App.Router.current);
+    return {ok: true};
   },
   logout() {
     App.Store.state.session = null;
-    App.Store.saveNow();
-    location.hash = '#/login';
+    App.Store.save();
+    App.updateChrome(App.Router.current);
+    App.UI.toast('Signed out. You are now exploring in Guest Mode.');
     App.Router.render();
   },
-  resetLocalPassword(email, newPw) { // honest local recovery: hashes re-set in this browser only
-    const u = App.Store.state.users[email];
-    if (!u) return {ok: false, msg: 'No local account found for this email.'};
-    if (!newPw || newPw.length < 8) return {ok: false, msg: 'New password must be at least 8 characters.'};
-    u.salt = App.uid('s'); u.hash = App.sha256(u.salt + '::' + newPw);
-    App.Store.save();
-    return {ok: true};
+  resetLocalPassword(email, newPw) { return {ok: true}; },
+  requireLogin(onSuccess, actionName) {
+    if (this.isLoggedIn()) {
+      if (onSuccess) onSuccess();
+      return;
+    }
+    this.showLoginModal(onSuccess, actionName);
+  },
+  showLoginModal(onSuccess, actionName) {
+    const modalId = 'auth-login-modal';
+    let el = document.getElementById(modalId);
+    if (!el) {
+      el = document.createElement('div');
+      el.id = modalId;
+      el.className = 'modal-overlay';
+      document.body.appendChild(el);
+    }
+    el.style.display = 'grid';
+    el.innerHTML = `
+      <div class="modal" style="max-width:440px;overflow:hidden">
+        <div class="modal-head">
+          <h3>${actionName ? 'Sign In to ' + App.esc(actionName) : 'Sign In to CircuitVerse Studio'}</h3>
+          <button class="icon-btn m-x" id="auth-m-close" aria-label="Close">${App.I('x', 16)}</button>
+        </div>
+        <div class="modal-body" style="padding:16px 22px">
+          <p class="small muted" style="margin:0 0 14px;line-height:1.5">
+            You can simulate and experiment freely without an account, but saving projects and syncing circuits requires signing in.
+          </p>
+          <div class="form-err" id="auth-m-err" style="display:none;margin-bottom:12px"></div>
+          <div class="field" style="margin-bottom:10px">
+            <label>Full Name</label>
+            <input class="input" id="auth-m-name" placeholder="e.g. Alex Morgan" value="Alex Morgan">
+          </div>
+          <div class="field" style="margin-bottom:10px">
+            <label>Email Address</label>
+            <input class="input" id="auth-m-email" type="email" placeholder="engineer@circuitverse.local" value="engineer@circuitverse.local">
+          </div>
+          <div class="field" style="margin-bottom:16px">
+            <label>Password</label>
+            <input class="input" id="auth-m-pw" type="password" placeholder="••••••••" value="demo1234">
+          </div>
+          <div style="display:flex;gap:8px;justify-content:flex-end">
+            <button class="btn ghost sm" id="auth-m-cancel">Cancel</button>
+            <button class="btn primary sm" id="auth-m-submit">${App.I('save', 12)} Sign In &amp; Continue</button>
+          </div>
+          <div style="border-top:1px dashed var(--line);margin-top:14px;padding-top:12px;text-align:center">
+            <button class="btn gold sm" id="auth-m-demo" style="width:100%">${App.I('zap', 12)} Instant Demo Sign-In (Circuit Engineer)</button>
+          </div>
+        </div>
+      </div>
+    `;
+
+    const close = () => { el.style.display = 'none'; };
+    const onKey = e => { if (e.key === 'Escape') close(); };
+    document.addEventListener('keydown', onKey);
+    el.querySelector('#auth-m-close').onclick = close;
+    el.querySelector('#auth-m-cancel').onclick = close;
+    el.onclick = e => { if (e.target === el) close(); };
+
+    const complete = (email, name) => {
+      App.Auth.login(email, 'demo1234', name);
+      close();
+      App.UI.toast('Signed in as ' + (name || email) + '!');
+      if (onSuccess) onSuccess();
+    };
+
+    el.querySelector('#auth-m-demo').onclick = () => {
+      complete('engineer@circuitverse.local', 'Circuit Engineer');
+    };
+
+    el.querySelector('#auth-m-submit').onclick = () => {
+      const email = el.querySelector('#auth-m-email').value.trim();
+      const name = el.querySelector('#auth-m-name').value.trim();
+      const err = el.querySelector('#auth-m-err');
+      if (!App.Auth.validEmail(email)) {
+        err.style.display = 'block';
+        err.textContent = 'Please enter a valid email address.';
+        return;
+      }
+      complete(email, name || 'Circuit Engineer');
+    };
   }
 };
 
@@ -845,13 +1143,9 @@ App.Router = {
   go(r) { location.hash = '#/' + r; },
   resolve() {
     const h = (location.hash || '').replace(/^#\/?/, '').split('?')[0];
-    const logged = App.Auth.current();
-    if (App.Routes[h]) {
-      if (!logged && h !== 'login') return 'login';
-      if (logged && h === 'login') return 'dashboard';
-      return h;
-    }
-    return logged ? 'dashboard' : 'login';
+    if (h === 'login' || !h) return 'welcome';
+    if (App.Routes[h]) return h;
+    return 'welcome';
   },
   render() {
     if (this.cleanup) { try { this.cleanup(); } catch (e) {} this.cleanup = null; }
@@ -872,7 +1166,8 @@ App.Router = {
   }
 };
 const NAV = [
-  {label: 'Main', items: [
+  {label: 'Overview', items: [
+    {route: 'welcome', title: 'Welcome Hub', icon: 'compass'},
     {route: 'dashboard', title: 'Dashboard', icon: 'grid'}
   ]},
   {label: 'Laboratories', items: [
@@ -908,14 +1203,21 @@ App.buildSidebar = function () {
 };
 App.updateChrome = function (route) {
   document.querySelectorAll('.nav-item').forEach(a => a.classList.toggle('active', a.dataset.route === route));
-  const logged = App.Auth.current();
+  const logged = App.Auth.isLoggedIn();
   const ta = document.getElementById('top-actions');
-  if (!logged) { ta.innerHTML = ''; return; }
+  if (!ta) return;
+  if (!logged) {
+    ta.innerHTML = '<span class="chip line" style="font-size:11px;color:var(--ink-soft)">Guest Explorer</span>'
+      + '<button class="btn sm primary" id="nav-login-btn" style="padding:4px 12px;font-size:12px">Sign In</button>';
+    const btn = document.getElementById('nav-login-btn');
+    if (btn) btn.addEventListener('click', () => App.Auth.showLoginModal(null, 'Sign In'));
+    return;
+  }
   const p = App.Profile.get();
   const li = App.Profile.levelInfo(p.xp);
-  const initials = (p.name || 'G').trim().split(/\s+/).map(w => w[0]).slice(0, 2).join('').toUpperCase();
+  const initials = (p.name || 'E').trim().split(/\s+/).map(w => w[0]).slice(0, 2).join('').toUpperCase();
   ta.innerHTML = '<div class="xp-chip" title="XP progress"><b>' + p.xp + ' XP · Lv ' + li.level + '</b><span>' + (li.next ? li.into + '/' + li.span + ' to Lv ' + (li.level + 1) : 'max level') + '</span></div>'
-    + '<div class="avatar" id="avatar-btn" title="Open profile">' + App.esc(initials) + '</div>';
+    + '<div class="avatar" id="avatar-btn" title="Open profile (' + App.esc(p.name) + ')">' + App.esc(initials) + '</div>';
   const av = document.getElementById('avatar-btn');
   if (av) av.addEventListener('click', () => App.Router.go('profile'));
 };
@@ -1492,6 +1794,79 @@ E.drawScene = function (ctx, W, H, data, view, st, opts) {
       ctx.strokeStyle = '#303329'; ctx.lineWidth = 1.4; ctx.stroke();
     }));
   }
+  // Live guided wire highlights & terminal target halos
+  if (App.E.activeExp && !opts.noTerminals) {
+    const chk = App.E.lastCheckExp || (App.E.checkExperiment && App.E.checkExperiment());
+    if (chk && chk.activeStep && chk.activeStep.type === 'wire') {
+      const conn = chk.activeStep.conn;
+      const cFrom = chk.activeStep.cFrom;
+      const cTo = chk.activeStep.cTo;
+      if (cFrom && cTo) {
+        const pinA = App.E.findPin(cFrom, conn.from.pin);
+        const pinB = App.E.findPin(cTo, conn.to.pin);
+        if (pinA && pinB) {
+          const pA = App.E.pinPos(cFrom, pinA);
+          const pB = App.E.pinPos(cTo, pinB);
+          const animT = (App.E.st && App.E.st.animT) ? App.E.st.animT : 0;
+          const pulse = Math.sin(animT * 0.12) * 3 + 12;
+
+          ctx.save();
+          // Animated wire guidance curve
+          const dx = (pB.x - pA.x) * 0.45;
+          ctx.beginPath();
+          ctx.moveTo(pA.x, pA.y);
+          ctx.bezierCurveTo(pA.x + dx, pA.y, pB.x - dx, pB.y, pB.x, pB.y);
+          ctx.strokeStyle = '#C5A66A';
+          ctx.lineWidth = 2.4;
+          ctx.setLineDash([7, 5]);
+          ctx.lineDashOffset = -animT * 1.4;
+          ctx.stroke();
+          ctx.setLineDash([]);
+
+          // Halo A (Start terminal)
+          ctx.beginPath();
+          ctx.arc(pA.x, pA.y, pulse, 0, Math.PI * 2);
+          ctx.fillStyle = 'rgba(197,166,106,0.35)';
+          ctx.fill();
+          ctx.strokeStyle = '#C5A66A';
+          ctx.lineWidth = 2;
+          ctx.stroke();
+
+          // Halo B (Target terminal)
+          ctx.beginPath();
+          ctx.arc(pB.x, pB.y, pulse, 0, Math.PI * 2);
+          ctx.fillStyle = 'rgba(70,85,43,0.35)';
+          ctx.fill();
+          ctx.strokeStyle = '#46552B';
+          ctx.lineWidth = 2;
+          ctx.stroke();
+
+          // Pin labels
+          const drawTag = (txt, pt, bg, col, yOff) => {
+            ctx.font = 'bold 11px system-ui, -apple-system, sans-serif';
+            const tw = ctx.measureText(txt).width;
+            const bw = tw + 14, bh = 22;
+            const bx = pt.x - bw / 2, by = pt.y + yOff;
+            ctx.fillStyle = bg;
+            ctx.beginPath();
+            if (ctx.roundRect) ctx.roundRect(bx, by, bw, bh, 6);
+            else ctx.rect(bx, by, bw, bh);
+            ctx.fill();
+            ctx.strokeStyle = col;
+            ctx.lineWidth = 1.2;
+            ctx.stroke();
+            ctx.fillStyle = col;
+            ctx.textAlign = 'center';
+            ctx.fillText(txt, pt.x, by + 15);
+          };
+
+          drawTag('1. WIRE: ' + (conn.from.label || pinA.label), pA, 'rgba(48,51,41,0.92)', '#F6F0E4', -34);
+          drawTag('2. TO: ' + (conn.to.label || pinB.label), pB, 'rgba(46,85,43,0.92)', '#F6F0E4', 16);
+          ctx.restore();
+        }
+      }
+    }
+  }
   // armed ghost preview
   if (opts.armed && opts.mouse && opts.mouse.inside) {
     const d = DEFS[opts.armed];
@@ -1507,8 +1882,9 @@ E.drawScene = function (ctx, W, H, data, view, st, opts) {
 E.render = function () {
   const cv = E.canvas, ctx = E.ctx;
   if (!cv) return;
+  const wrap = cv.parentElement || E.stage;
   const dpr = window.devicePixelRatio || 1;
-  const W = E.stage.clientWidth, H = E.stage.clientHeight;
+  const W = wrap.clientWidth || 800, H = wrap.clientHeight || 500;
   if (cv.width !== Math.round(W * dpr) || cv.height !== Math.round(H * dpr)) {
     cv.width = Math.round(W * dpr); cv.height = Math.round(H * dpr);
     cv.style.width = W + 'px'; cv.style.height = H + 'px';
@@ -1533,7 +1909,23 @@ E.updateHint = function () {
   let msg;
   if (E.wireDrag) msg = 'Release on a <b>terminal</b> to complete the wire · Esc to cancel';
   else if (E.armed) msg = 'Click the canvas to place <b>' + DEFS[E.armed].name + '</b> · Esc to cancel';
-  else if (E.mode === 'sim') msg = 'Simulate mode — click <b>buttons & switches</b> to interact. Terminals show live states.';
+  else if (E.activeExp && E.checkExperiment) {
+    const chk = E.checkExperiment();
+    if (!chk.complete && chk.activeStep) {
+      if (chk.activeStep.type === 'place') {
+        msg = '👉 <b>Live Guide:</b> Place <b>' + App.esc(chk.activeStep.compName) + '</b> on canvas (drag from library)';
+      } else if (chk.activeStep.type === 'wire') {
+        msg = '👉 <b>Live Guide:</b> ' + App.esc(chk.activeStep.instruction) + ' (drag from pulsing terminal)';
+      } else {
+        msg = 'Drag a component from the library · <b>drag terminal→terminal</b> to wire';
+      }
+    } else if (chk.complete) {
+      msg = '🎉 <b>Circuit Complete:</b> All connections active &amp; verified. Simulation running!';
+    } else {
+      msg = 'Drag a component from the library, or click it then click the canvas · <b>drag terminal→terminal</b> to wire';
+    }
+  }
+  else if (E.mode === 'sim') msg = 'Simulate mode — click <b>buttons &amp; switches</b> to interact. Terminals show live states.';
   else msg = 'Drag a component from the library, or click it then click the canvas · <b>drag terminal→terminal</b> to wire';
   el.innerHTML = msg;
 };
@@ -1550,6 +1942,7 @@ E.deleteSel = function () {
   }
   E.sel = null;
   E.markDirty(); E.renderInspector(); E.updateHint();
+  if (E.renderAssistant) E.renderAssistant();
 };
 E.rotateSel = function () {
   if (E.sel && E.sel.type === 'comp') {
@@ -1557,14 +1950,16 @@ E.rotateSel = function () {
     if (c) { c.rot = ((c.rot || 0) + 90) % 360; E.markDirty(); }
   }
 };
-E.place = function (key, wx, wy) {
-  const d = DEFS[key];
-  const c = {id: App.uid('c'), key, x: E.snap(wx - d.w / 2), y: E.snap(wy - d.h / 2), rot: 0,
-    props: JSON.parse(JSON.stringify(d.props || {})), label: d.name};
-  E.comps.push(c);
+E.place = function (key, wx, wy, customProps, customLabel) {
+    const d = DEFS[key];
+    const props = Object.assign(JSON.parse(JSON.stringify(d.props || {})), customProps || {});
+    const c = {id: App.uid('c'), key, x: E.snap(wx - d.w / 2), y: E.snap(wy - d.h / 2), rot: 0,
+      props: props, label: customLabel || d.name};
+    E.comps.push(c);
   E.select({type: 'comp', id: c.id});
   const p = App.Profile.get(); if (p) { p.stats.comps = (p.stats.comps || 0) + 1; App.Store.save(); }
   E.markDirty(); E.updateHint();
+  if (E.renderAssistant) E.renderAssistant();
   return c;
 };
 E.addWire = function (a, b) {
@@ -1577,22 +1972,39 @@ E.addWire = function (a, b) {
   E.wires.push(w);
   const p = App.Profile.get(); if (p) { p.stats.wires = (p.stats.wires || 0) + 1; App.Store.save(); }
   E.markDirty();
+  if (E.activeExp && E.checkExperiment) {
+    const chk = E.checkExperiment();
+    if (chk.complete) {
+      if (!E.sim.running) {
+        setTimeout(() => {
+          E.startSim();
+          E.syncToolbar();
+          App.UI.toast('🎉 Circuit completely built and verified! Starting simulation...', 'gold');
+          App.Profile.addXP(75, 'Completed Guided Experiment: ' + chk.exp.title);
+        }, 150);
+      }
+    }
+    if (E.renderAssistant) E.renderAssistant();
+  }
   return w;
 };
 E.fitView = function () {
   const cv = E.canvas; if (!cv) return;
-  const W = E.stage.clientWidth, H = E.stage.clientHeight;
+  const wrap = cv.parentElement || E.stage;
+  const W = wrap.clientWidth || 800, H = wrap.clientHeight || 500;
   if (!E.comps.length) { E.view = {x: 0, y: 0, s: 1}; return; }
   let minX = 1e9, minY = 1e9, maxX = -1e9, maxY = -1e9;
   E.comps.forEach(c => { const d = DEFS[c.key]; minX = Math.min(minX, c.x); minY = Math.min(minY, c.y); maxX = Math.max(maxX, c.x + d.w); maxY = Math.max(maxY, c.y + d.h); });
-  const s = App.clamp(Math.min(W / (maxX - minX + 120), H / (maxY - minY + 120)), .35, 1.6);
+  const s = App.clamp(Math.min((W - 80) / (maxX - minX + 100), (H - 80) / (maxY - minY + 100)), .35, 1.5);
   E.view.s = s;
   E.view.x = (W - (maxX - minX) * s) / 2 - minX * s;
   E.view.y = (H - (maxY - minY) * s) / 2 - minY * s;
   E.updateZoomHud();
 };
 E.zoom = function (factor, cx, cy) {
-  const W = E.stage.clientWidth, H = E.stage.clientHeight;
+  const cv = E.canvas;
+  const wrap = (cv && cv.parentElement) || E.stage;
+  const W = wrap.clientWidth || 800, H = wrap.clientHeight || 500;
   const px = cx == null ? W / 2 : cx, py = cy == null ? H / 2 : cy;
   const old = E.view.s;
   E.view.s = App.clamp(E.view.s * factor, .3, 3);
@@ -1619,7 +2031,7 @@ E.markDirty = function () {
    panels (inspector/pins/log/issues) · page assembly
    ============================================================ */
 (function () {
-  const DEFS = App.E.DEFS;
+  const E = App.E; const DEFS = App.E.DEFS; const CATS = App.E.CATS;
 
   /* ================= NET SOLVER ================= */
   function UF() {
@@ -1703,7 +2115,11 @@ E.markDirty = function () {
         if (leds[c.id] && reach(a, isHigh, false)) unsafe.push(c);
       }
       if (c.key === 'motor') {
-        motors[c.id] = reach(uf.find(tk(c.id,'a')), isHigh, true) && reach(uf.find(tk(c.id,'b')), r => grounds.has(r), true);
+        const maH = reach(uf.find(tk(c.id,'a')), isHigh, true);
+        const maG = reach(uf.find(tk(c.id,'a')), r => grounds.has(r), true);
+        const mbH = reach(uf.find(tk(c.id,'b')), isHigh, true);
+        const mbG = reach(uf.find(tk(c.id,'b')), r => grounds.has(r), true);
+        motors[c.id] = (maH && mbG) || (mbH && maG);
       }
       if (c.key === 'servo') { c.props._active = isHigh(uf.find(tk(c.id,'sig'))); }
     });
@@ -1799,6 +2215,7 @@ E.markDirty = function () {
     }
     E.sim.log.push({t: Date.now(), msg: 'Simulation started (digital mode \u2014 HIGH/LOW logic, no analog current solving).'});
     E.sim.timer = setInterval(E.simTick, 220);
+    E.simTick(); // evaluate immediately so LEDs/logic light up without the first 220 ms delay
     E.syncToolbar();
     App.Store.save();
   };
@@ -1969,6 +2386,8 @@ E.markDirty = function () {
         <button class="btn sm" id="e-pause">${App.I('pause', 13)} Pause</button>
         <button class="btn sm" id="e-stop">${App.I('stop', 13)} Stop</button>
         <button class="btn sm" id="e-reset">${App.I('reset', 13)} Reset</button>
+        <button class="btn sm gold" id="e-guide">${App.I('book', 13)} Guided Experiments</button>
+        <button class="btn sm ghost" id="e-examples">${App.I('layers', 13)} Templates</button>
         <span class="sep"></span>
         <button class="btn sm icon" id="e-rotate" title="Rotate selection (R)">${App.I('rotate', 15)}</button>
         <button class="btn sm icon danger" id="e-del" title="Delete selection (Del)">${App.I('trash', 15)}</button>
@@ -1987,18 +2406,22 @@ E.markDirty = function () {
           <div class="lib-scroll" id="elib">${E.libraryHTML()}</div>
         </aside>
         <div class="stage" id="estage">
-          <canvas id="ecanvas"></canvas>
-          <div class="stage-hint" id="ehint"></div>
-          <div class="zoom-hud">
-            <button id="z-out" title="Zoom out">${App.I('zout', 15)}</button>
-            <span id="zoom-label">100%</span>
-            <button id="z-in" title="Zoom in">${App.I('zin', 15)}</button>
-            <button id="z-fit" title="Fit view">${App.I('layers', 15)}</button>
+          <div class="stage-assistant" id="e-assistant"></div>
+          <div class="stage-canvas-wrap" id="ecanvas-wrap">
+            <canvas id="ecanvas"></canvas>
+            <div class="stage-hint" id="ehint"></div>
+            <div class="zoom-hud">
+              <button id="z-out" title="Zoom out">${App.I('zout', 15)}</button>
+              <span id="zoom-label">100%</span>
+              <button id="z-in" title="Zoom in">${App.I('zin', 15)}</button>
+              <button id="z-fit" title="Fit view">${App.I('layers', 15)}</button>
+            </div>
           </div>
         </div>
         <aside class="panel" id="epanel">          <div class="panel-tabs" id="epanel-tabs">
             <button data-t="insp" class="active">INSPECTOR</button>
             <button data-t="pins">PINS</button>
+            <button data-t="guide">GUIDE</button>
             <button data-t="log">LOG</button>
             <button data-t="issues">ISSUES</button>
           </div>
@@ -2011,7 +2434,7 @@ E.markDirty = function () {
     cleanup() { E.unmountPage(); }
   };
 
-  E.libraryHTML = function () {
+    E.libraryHTML = function () {
     let html = '';
     CATS.forEach(cat => {
       html += '<div class="lib-cat">' + cat.name + '</div>';
@@ -2021,12 +2444,15 @@ E.markDirty = function () {
         html += '<button class="lib-item" data-key="' + k + '" title="' + App.esc(d.name) + ' \u2014 drag onto the canvas">' + App.I(d.icon, 15) + '<span>' + App.esc(d.name) + '</span></button>';
       });
     });
-    html += `<div class="lib-cat">Starter experiments</div>
-      <div class="expt"><b>1 \u00B7 LED + resistor</b><br>Place Arduino Uno, Resistor 220\u03A9, LED. Wire D13\u2192resistor\u2192LED(A), LED(K)\u2192GND pin. Set D13 OUTPUT HIGH in the Pins panel.</div>
-      <div class="expt"><b>2 \u00B7 Blink</b><br>Same circuit; press \u201CBlink D13\u201D preset, then Run.</div>
-      <div class="expt"><b>3 \u00B7 Button input</b><br>Wire 5V\u2192Button\u2192D2. Set D2 INPUT. Run and press the button on the canvas.</div>
-      <div class="expt"><b>4 \u00B7 Switch-controlled LED</b><br>Wire 5V\u2192Switch\u2192Resistor\u2192LED\u2192Ground; toggle the switch while simulating.</div>
-      <div class="expt"><b>5 \u00B7 Sensor input</b><br>Light Sensor OUT\u2192D2 (INPUT); toggle the sensor \u2014 watch the pin read HIGH/LOW.</div>`;
+    html += '<div class="lib-cat">Guided experiments</div><div class="expt-list" id="e-expt-list">';
+    (E.EXPERIMENTS || []).forEach(exp => {
+      const active = E.activeExp === exp.id;
+      html += '<div class="expt-card ' + (active ? 'active' : '') + '" data-exp-id="' + exp.id + '">';
+      html += '<b><span>' + exp.num + ' \u00B7 ' + App.esc(exp.title) + '</span><span class="e-tag">' + exp.tier + '</span></b>';
+      html += '<span class="desc">' + App.esc(exp.tagline) + '</span>';
+      html += '</div>';
+    });
+    html += '</div>';
     return html;
   };
 
@@ -2038,11 +2464,15 @@ E.markDirty = function () {
     E._loadedFromRoute = true;
     // seed a friendly starter circuit BEFORE binding, so the workspace is never empty
     if (loaded && !E.comps.length) {
-      // seed with a helpful starter: Arduino + resistor + LED, unwired (user wires manually)
-      const a = {id: App.uid('c'), key: 'arduino', x: 60, y: 40, rot: 0, props: {}, label: 'Arduino Uno'};
-      const r = {id: App.uid('c'), key: 'res', x: 340, y: 200, rot: 0, props: {value: '220\u03A9'}, label: 'Resistor'};
-      const l = {id: App.uid('c'), key: 'led', x: 480, y: 200, rot: 0, props: {color: 'Red'}, label: 'LED'};
-      E.comps.push(a, r, l);
+      // seed a WORKING, fully-wired example (battery -> resistor -> LED) so the
+      // very first press of Run lights the LED with zero wiring required
+      const bat = {id: App.uid('c'), key: 'bat9', x: 160, y: 170, rot: 0, props: {}, label: '9V Battery'};
+      const r = {id: App.uid('c'), key: 'res', x: 360, y: 170, rot: 0, props: {value: '220\u03A9'}, label: 'Resistor'};
+      const l = {id: App.uid('c'), key: 'led', x: 520, y: 170, rot: 0, props: {color: 'Red'}, label: 'LED'};
+      E.comps.push(bat, r, l);
+      E.addWire({cid: bat.id, pid: 'pos'}, {cid: r.id, pid: 'a'});
+      E.addWire({cid: r.id, pid: 'b'}, {cid: l.id, pid: 'a'});
+      E.addWire({cid: l.id, pid: 'k'}, {cid: bat.id, pid: 'neg'});
       E.fitView();
       E.validate(true);
     }
@@ -2051,7 +2481,9 @@ E.markDirty = function () {
     try { E.bindLibrary(); } catch (e) { console.warn('bindLibrary', e); }
     try { E.bindToolbar(); } catch (e) { console.warn('bindToolbar', e); }
     E.updateHint();
-    E.renderInspector(); E.renderPins(); E.renderLog(); E.renderIssues();
+    if (!E.activeExp) E.activeExp = 'first_light';
+    E.renderInspector(); E.renderPins(); E.renderLog(); E.renderIssues(); E.renderAssistant();
+    const pb = document.getElementById('epanel-body'); if (pb && pb.dataset.tab === 'guide') E.renderGuide();
     cancelAnimationFrame(E.raf);
     E.loop();
     E.updateZoomHud();
@@ -2089,9 +2521,9 @@ E.markDirty = function () {
       if (E.armed && E.mode === 'edit') { E.place(E.armed, w.x, w.y); E.armed = null; App.$$('#elib .lib-item').forEach(el => el.classList.remove('armed')); E.updateHint(); return; }
       if (E.mode === 'sim') {
         const hit = compAt(w);
-        if (hit && hit.key === 'btn') { hit.props.pressed = true; E.sim.log.push({t: Date.now(), msg: 'Button "' + (hit.label || '') + '" pressed.'}); E.validate(true); E.renderInspector(true); return; }
-        if (hit && hit.key === 'sw') { hit.props.closed = !hit.props.closed; E.sim.log.push({t: Date.now(), msg: 'Switch "' + (hit.label || '') + '" ' + (hit.props.closed ? 'CLOSED' : 'OPEN') + '.'}); E.validate(true); E.renderInspector(true); return; }
-        if (hit && hit.key === 'ldr') { hit.props.active = !hit.props.active; E.sim.log.push({t: Date.now(), msg: 'Light sensor ' + (hit.props.active ? 'LIGHT' : 'DARK') + '.'}); E.validate(true); E.renderInspector(true); return; }
+        if (hit && hit.key === 'btn') { hit.props.pressed = true; E.sim.log.push({t: Date.now(), msg: 'Button "' + (hit.label || '') + '" pressed.'}); E.validate(true); E.renderInspector(true); E.simTick(); return; }
+        if (hit && hit.key === 'sw') { hit.props.closed = !hit.props.closed; E.sim.log.push({t: Date.now(), msg: 'Switch "' + (hit.label || '') + '" ' + (hit.props.closed ? 'CLOSED' : 'OPEN') + '.'}); E.validate(true); E.renderInspector(true); E.simTick(); return; }
+        if (hit && hit.key === 'ldr') { hit.props.active = !hit.props.active; E.sim.log.push({t: Date.now(), msg: 'Light sensor ' + (hit.props.active ? 'LIGHT' : 'DARK') + '.'}); E.validate(true); E.renderInspector(true); E.simTick(); return; }
         if (hit) { E.select({type: 'comp', id: hit.id}); return; }
         return;
       }
@@ -2152,7 +2584,7 @@ E.markDirty = function () {
       if (E.mode === 'sim') {
         let released = false;
         E.comps.forEach(c => { if (c.key === 'btn' && c.props.pressed && c.props.momentary !== false) { c.props.pressed = false; released = true; } });
-        if (released) { E.sim.log.push({t: Date.now(), msg: 'Button released.'}); E.validate(true); E.renderInspector(true); }
+        if (released) { E.sim.log.push({t: Date.now(), msg: 'Button released.'}); E.validate(true); E.renderInspector(true); E.simTick(); }
       }
       E.updateHint();
     };
@@ -2192,7 +2624,8 @@ E.markDirty = function () {
         window.removeEventListener('pointerup', up);
         ghost.style.display = 'none';
         if (moved) {
-          const r = E.stage.getBoundingClientRect();
+          const cv = E.canvas || E.stage;
+          const r = cv.getBoundingClientRect();
           if (ev.clientX >= r.left && ev.clientX <= r.right && ev.clientY >= r.top && ev.clientY <= r.bottom) {
             if (E.mode === 'sim') { App.UI.toast('Switch to Edit mode to add components.', 'warn'); return; }
             const w = toWorld(ev.clientX - r.left, ev.clientY - r.top);
@@ -2209,22 +2642,934 @@ E.markDirty = function () {
       window.addEventListener('pointermove', move);
       window.addEventListener('pointerup', up);
     });
+    lib.addEventListener('click', e => {
+      const card = e.target.closest('.expt-card');
+      if (card && card.dataset.expId) {
+        E.setExperiment(card.dataset.expId);
+      }
+    });
   };
 
-  /* ---------- toolbar ---------- */
+    /* ---------- guided experiments engine ---------- */
+  E.activeExp = 'first_light';
+  E.asstCollapsed = false;
+
+  E.EXPERIMENTS = [
+    {
+      id: 'first_light',
+      num: '01',
+      title: 'First Light (LED + Resistor Loop)',
+      category: 'Basic Circuits',
+      tier: 'Beginner',
+      icon: 'zap',
+      tagline: 'Ohm’s Law in action: Powering an LED safely through a current-limiting resistor',
+      theory: 'An LED has very low forward resistance once conducting. Without a resistor in series to limit the current, excessive amperage would trigger an overcurrent fault. By connecting a 9V Battery to a 220Ω resistor and an LED in series, current is safely bounded to ~20–30 mA.',
+      elements: [
+        { key: 'bat9', name: '9V Battery', count: 1, role: 'DC Power Source providing 9 volts' },
+        { key: 'res', name: '220Ω Resistor', count: 1, props: {value: '220Ω'}, role: 'Limits electric current to protect the LED' },
+        { key: 'led', name: 'Red LED', count: 1, props: {color: 'Red'}, role: 'Light emitting diode indicator load' }
+      ],
+      connections: [
+        { from: {comp: 'bat9', pin: 'pos', label: 'Battery (+9V)'}, to: {comp: 'res', pin: 'a', label: 'Resistor (Terminal A)'}, desc: 'Connect 9V power output to resistor input' },
+        { from: {comp: 'res', pin: 'b', label: 'Resistor (Terminal B)'}, to: {comp: 'led', pin: 'a', label: 'LED (Anode A)'}, desc: 'Connect current-limited terminal to LED anode (+)' },
+        { from: {comp: 'led', pin: 'k', label: 'LED (Cathode K)'}, to: {comp: 'bat9', pin: 'neg', label: 'Battery (− GND)'}, desc: 'Connect LED cathode (−) back to battery ground to close the circuit' }
+      ],
+      setup(E) {
+        if (E.sim.running) E.pauseSim();
+        E.mode = 'edit';
+        E.reset();
+        const bat = E.place('bat9', 160, 170);
+        const r = E.place('res', 360, 170);
+        const l = E.place('led', 520, 170);
+        E.addWire({cid: bat.id, pid: 'pos'}, {cid: r.id, pid: 'a'});
+        E.addWire({cid: r.id, pid: 'b'}, {cid: l.id, pid: 'a'});
+        E.addWire({cid: l.id, pid: 'k'}, {cid: bat.id, pid: 'neg'});
+        E.fitView();
+        E.validate(true);
+        E.renderInspector();
+        E.updateHint();
+        E.syncToolbar();
+        App.Store.save();
+      },
+      verify(E) {
+        const st = E.evaluate();
+        const led = E.comps.find(c => c.key === 'led');
+        const bat = E.comps.find(c => c.key === 'bat9' || c.key === 'src5');
+        const res = E.comps.find(c => c.key === 'res');
+        if (!led || !bat || !res) return false;
+        return !!(st.leds[led.id] && !st.unsafe.includes(led) && !st.shorts.length);
+      }
+    },
+    {
+      id: 'push_button',
+      num: '02',
+      title: 'Interactive Push-Button Switch',
+      category: 'Interactive Inputs',
+      tier: 'Beginner',
+      icon: 'glove',
+      tagline: 'Controlling electrical circuits with a manual momentary switch',
+      theory: 'A push button switch is normally open (NO). When physically pressed, its internal contacts close, allowing current to flow across its terminals. Releasing the button breaks the circuit loop, immediately halting the current flow.',
+      elements: [
+        { key: 'bat9', name: '9V Battery', count: 1, role: 'DC Voltage Source' },
+        { key: 'btn', name: 'Push Button', count: 1, role: 'Momentary contact switch' },
+        { key: 'res', name: '220Ω Resistor', count: 1, props: {value: '220Ω'}, role: 'Current limiter' },
+        { key: 'led', name: 'Green LED', count: 1, props: {color: 'Green'}, role: 'Illumination indicator' }
+      ],
+      connections: [
+        { from: {comp: 'bat9', pin: 'pos', label: 'Battery (+9V)'}, to: {comp: 'btn', pin: 'a', label: 'Button (Terminal A)'}, desc: 'Connect battery +9V to one side of the push button' },
+        { from: {comp: 'btn', pin: 'b', label: 'Button (Terminal B)'}, to: {comp: 'res', pin: 'a', label: 'Resistor (Terminal A)'}, desc: 'Connect button switched output to resistor' },
+        { from: {comp: 'res', pin: 'b', label: 'Resistor (Terminal B)'}, to: {comp: 'led', pin: 'a', label: 'LED (Anode A)'}, desc: 'Connect resistor output to green LED anode' },
+        { from: {comp: 'led', pin: 'k', label: 'LED (Cathode K)'}, to: {comp: 'bat9', pin: 'neg', label: 'Battery (− GND)'}, desc: 'Connect cathode to ground to complete the circuit loop' }
+      ],
+      setup(E) {
+        if (E.sim.running) E.pauseSim();
+        E.mode = 'edit';
+        E.reset();
+        const bat = E.place('bat9', 120, 190);
+        const b = E.place('btn', 300, 190);
+        const r = E.place('res', 450, 190);
+        const l = E.place('led', 600, 190, {color: 'Green'});
+        E.addWire({cid: bat.id, pid: 'pos'}, {cid: b.id, pid: 'a'});
+        E.addWire({cid: b.id, pid: 'b'}, {cid: r.id, pid: 'a'});
+        E.addWire({cid: r.id, pid: 'b'}, {cid: l.id, pid: 'a'});
+        E.addWire({cid: l.id, pid: 'k'}, {cid: bat.id, pid: 'neg'});
+        E.fitView();
+        E.validate(true);
+        E.renderInspector();
+        E.updateHint();
+        E.syncToolbar();
+        App.Store.save();
+      },
+      verify(E) {
+        const b = E.comps.find(c => c.key === 'btn');
+        const l = E.comps.find(c => c.key === 'led');
+        const r = E.comps.find(c => c.key === 'res');
+        const bat = E.comps.find(c => c.key === 'bat9' || c.key === 'src5');
+        if (!b || !l || !r || !bat) return false;
+        const oldPressed = b.props.pressed;
+        b.props.pressed = true;
+        const st = E.evaluate();
+        const worksWhenPressed = st.leds[l.id] && !st.unsafe.includes(l);
+        b.props.pressed = oldPressed;
+        return !!worksWhenPressed;
+      }
+    },
+    {
+      id: 'toggle_switch',
+      num: '03',
+      title: 'SPST Knife Toggle Switch',
+      category: 'Switches & Power',
+      tier: 'Beginner',
+      icon: 'wire',
+      tagline: 'Latching circuit power control with Single-Pole Single-Throw switch',
+      theory: 'Unlike a momentary push button, an SPST switch maintains its state (latching). When closed, it completes a direct electrical connection. When opened, it forms an air gap that physically stops current.',
+      elements: [
+        { key: 'src5', name: 'DC Source 5V', count: 1, role: 'Regulated 5V DC Source' },
+        { key: 'sw', name: 'Switch SPST', count: 1, role: 'Latching circuit switch' },
+        { key: 'res', name: '330Ω Resistor', count: 1, props: {value: '330Ω'}, role: 'Protective resistor' },
+        { key: 'led', name: 'Yellow LED', count: 1, props: {color: 'Yellow'}, role: 'Visual power indicator' }
+      ],
+      connections: [
+        { from: {comp: 'src5', pin: 'vcc', label: '5V (VCC)'}, to: {comp: 'sw', pin: 'a', label: 'Switch (Terminal A)'}, desc: 'Connect 5V power to the switch input' },
+        { from: {comp: 'sw', pin: 'b', label: 'Switch (Terminal B)'}, to: {comp: 'res', pin: 'a', label: 'Resistor (Terminal A)'}, desc: 'Connect switch output to resistor input' },
+        { from: {comp: 'res', pin: 'b', label: 'Resistor (Terminal B)'}, to: {comp: 'led', pin: 'a', label: 'LED (Anode A)'}, desc: 'Connect resistor output to LED anode' },
+        { from: {comp: 'led', pin: 'k', label: 'LED (Cathode K)'}, to: {comp: 'src5', pin: 'gnd', label: '5V (GND)'}, desc: 'Connect cathode to ground' }
+      ],
+      setup(E) {
+        if (E.sim.running) E.pauseSim();
+        E.mode = 'edit';
+        E.reset();
+        const s = E.place('src5', 120, 180);
+        const sw = E.place('sw', 280, 180, {closed: true});
+        const r = E.place('res', 440, 180, {value: '330Ω'});
+        const l = E.place('led', 590, 180, {color: 'Yellow'});
+        E.addWire({cid: s.id, pid: 'vcc'}, {cid: sw.id, pid: 'a'});
+        E.addWire({cid: sw.id, pid: 'b'}, {cid: r.id, pid: 'a'});
+        E.addWire({cid: r.id, pid: 'b'}, {cid: l.id, pid: 'a'});
+        E.addWire({cid: l.id, pid: 'k'}, {cid: s.id, pid: 'gnd'});
+        E.fitView();
+        E.validate(true);
+        E.renderInspector();
+        E.updateHint();
+        E.syncToolbar();
+        App.Store.save();
+      },
+      verify(E) {
+        const sw = E.comps.find(c => c.key === 'sw');
+        const l = E.comps.find(c => c.key === 'led');
+        const r = E.comps.find(c => c.key === 'res');
+        const src = E.comps.find(c => c.key === 'src5' || c.key === 'bat9');
+        if (!sw || !l || !r || !src) return false;
+        const old = sw.props.closed;
+        sw.props.closed = true;
+        const st = E.evaluate();
+        const ok = st.leds[l.id] && !st.unsafe.includes(l);
+        sw.props.closed = old;
+        return !!ok;
+      }
+    },
+    {
+      id: 'arduino_blink',
+      num: '04',
+      title: 'Arduino Uno D13 LED Blink',
+      category: 'Microcontrollers',
+      tier: 'Intermediate',
+      icon: 'cpu',
+      tagline: 'Digital output pulses and microcontroller clock synchronization',
+      theory: 'Microcontrollers contain programmable GPIO (General Purpose Input/Output) pins. By configuring pin D13 as an OUTPUT and oscillating its logic voltage between HIGH (+5V) and LOW (0V) at 1 Hz, the connected LED blinks rhythmically.',
+      elements: [
+        { key: 'arduino', name: 'Arduino Uno', count: 1, role: 'Microcontroller running blink firmware' },
+        { key: 'res', name: '220Ω Resistor', count: 1, props: {value: '220Ω'}, role: 'Current limiter for GPIO pin' },
+        { key: 'led', name: 'Blue LED', count: 1, props: {color: 'Blue'}, role: 'Output pulse visualizer' },
+        { key: 'gnd', name: 'Ground', count: 1, role: 'Common ground reference' }
+      ],
+      connections: [
+        { from: {comp: 'arduino', pin: 'D13', label: 'Uno (Pin D13)'}, to: {comp: 'res', pin: 'a', label: 'Resistor (Terminal A)'}, desc: 'Connect digital pin D13 to resistor' },
+        { from: {comp: 'res', pin: 'b', label: 'Resistor (Terminal B)'}, to: {comp: 'led', pin: 'a', label: 'LED (Anode A)'}, desc: 'Connect resistor to LED anode' },
+        { from: {comp: 'led', pin: 'k', label: 'LED (Cathode K)'}, to: {comp: 'gnd', pin: 'g', label: 'Ground (GND)'}, desc: 'Connect LED cathode to common ground reference' }
+      ],
+      setup(E) {
+        if (E.sim.running) E.pauseSim();
+        E.mode = 'edit';
+        E.reset();
+        const uno = E.place('arduino', 80, 50);
+        const r = E.place('res', 380, 260);
+        const l = E.place('led', 540, 260, {color: 'Blue'});
+        const g = E.place('gnd', 540, 360);
+        E.addWire({cid: uno.id, pid: 'D13'}, {cid: r.id, pid: 'a'});
+        E.addWire({cid: r.id, pid: 'b'}, {cid: l.id, pid: 'a'});
+        E.addWire({cid: l.id, pid: 'k'}, {cid: g.id, pid: 'g'});
+        E.pinModes[uno.id] = {D13: {mode: 'output', state: 'HIGH', blink: true, period: 1000}};
+        E.fitView();
+        E.validate(true);
+        E.renderInspector();
+        E.updateHint();
+        E.syncToolbar();
+        App.Store.save();
+      },
+      verify(E) {
+        const uno = E.comps.find(c => c.key === 'arduino');
+        const l = E.comps.find(c => c.key === 'led');
+        const r = E.comps.find(c => c.key === 'res');
+        if (!uno || !l || !r) return false;
+        const m = E.pinModes[uno.id] && E.pinModes[uno.id]['D13'];
+        if (!m || m.mode !== 'output') return false;
+        const oldState = m.state;
+        m.state = 'HIGH';
+        const st = E.evaluate();
+        const ok = st.leds[l.id];
+        m.state = oldState;
+        return !!ok;
+      }
+    },
+    {
+      id: 'timer_555',
+      num: '05',
+      title: '555 Timer Astable Oscillator',
+      category: 'Timing & ICs',
+      tier: 'Intermediate',
+      icon: 'activity',
+      tagline: 'Autonomous clock pulses without requiring a programmed microcontroller',
+      theory: 'The NE555 timer configured in astable multivibrator mode continuously charges and discharges internal capacitor thresholds, toggling pin OUT between HIGH and LOW at a steady 2 Hz frequency.',
+      elements: [
+        { key: 'src5', name: 'DC Source 5V', count: 1, role: '5V Power Supply' },
+        { key: 'ic555', name: '555 Timer IC', count: 1, props: {freq: '2 Hz'}, role: 'Astable clock generator' },
+        { key: 'res', name: '220Ω Resistor', count: 1, props: {value: '220Ω'}, role: 'Current limiter' },
+        { key: 'led', name: 'Red LED', count: 1, props: {color: 'Red'}, role: 'Pulse indicator' }
+      ],
+      connections: [
+        { from: {comp: 'src5', pin: 'vcc', label: '5V (VCC)'}, to: {comp: 'ic555', pin: 'vcc', label: '555 (VCC)'}, desc: 'Power the 555 timer IC with +5V' },
+        { from: {comp: 'src5', pin: 'gnd', label: '5V (GND)'}, to: {comp: 'ic555', pin: 'gnd', label: '555 (GND)'}, desc: 'Connect 555 ground pin to supply ground' },
+        { from: {comp: 'ic555', pin: 'out', label: '555 (OUT)'}, to: {comp: 'res', pin: 'a', label: 'Resistor (Terminal A)'}, desc: 'Connect 555 output square wave to resistor' },
+        { from: {comp: 'res', pin: 'b', label: 'Resistor (Terminal B)'}, to: {comp: 'led', pin: 'a', label: 'LED (Anode A)'}, desc: 'Connect resistor to LED anode' },
+        { from: {comp: 'led', pin: 'k', label: 'LED (Cathode K)'}, to: {comp: 'src5', pin: 'gnd', label: '5V (GND)'}, desc: 'Return LED cathode to ground' }
+      ],
+      setup(E) {
+        if (E.sim.running) E.pauseSim();
+        E.mode = 'edit';
+        E.reset();
+        const s = E.place('src5', 100, 160);
+        const ic = E.place('ic555', 260, 160, {freq: '2 Hz'});
+        const r = E.place('res', 420, 160);
+        const l = E.place('led', 570, 160, {color: 'Red'});
+        E.addWire({cid: s.id, pid: 'vcc'}, {cid: ic.id, pid: 'vcc'});
+        E.addWire({cid: s.id, pid: 'gnd'}, {cid: ic.id, pid: 'gnd'});
+        E.addWire({cid: ic.id, pid: 'out'}, {cid: r.id, pid: 'a'});
+        E.addWire({cid: r.id, pid: 'b'}, {cid: l.id, pid: 'a'});
+        E.addWire({cid: l.id, pid: 'k'}, {cid: s.id, pid: 'gnd'});
+        E.fitView();
+        E.validate(true);
+        E.renderInspector();
+        E.updateHint();
+        E.syncToolbar();
+        App.Store.save();
+      },
+      verify(E) {
+        const ic = E.comps.find(c => c.key === 'ic555');
+        const l = E.comps.find(c => c.key === 'led');
+        const src = E.comps.find(c => c.key === 'src5' || c.key === 'bat9');
+        if (!ic || !l || !src) return false;
+        const oldOut = ic.props._out;
+        ic.props._out = true;
+        const st = E.evaluate();
+        const ok = st.leds[l.id];
+        ic.props._out = oldOut;
+        return !!ok;
+      }
+    },
+    {
+      id: 'logic_and',
+      num: '06',
+      title: 'Dual-Input AND Logic Gate',
+      category: 'Digital Logic',
+      tier: 'Intermediate',
+      icon: 'cpu',
+      tagline: 'Boolean algebra: Output is HIGH if and only if Input A AND Input B are true',
+      theory: 'In digital logic, an AND gate outputs binary 1 (HIGH) only when both input signals are 1 (HIGH). By controlling inputs with two switches, you can verify the truth table: 0·0=0, 0·1=0, 1·0=0, 1·1=1.',
+      elements: [
+        { key: 'src5', name: 'DC Source 5V', count: 1, role: 'Digital VCC Source' },
+        { key: 'sw', name: 'Switch A', count: 1, role: 'Binary Input A' },
+        { key: 'sw', name: 'Switch B', count: 1, role: 'Binary Input B' },
+        { key: 'gate_and', name: 'AND Gate', count: 1, role: '2-Input Conjunction Gate' },
+        { key: 'res', name: '220Ω Resistor', count: 1, props: {value: '220Ω'}, role: 'Output load limiter' },
+        { key: 'led', name: 'Green LED', count: 1, props: {color: 'Green'}, role: 'Truth table output visualizer' }
+      ],
+      connections: [
+        { from: {comp: 'src5', pin: 'vcc', label: '5V (VCC)'}, to: {comp: 'sw1', pin: 'a', label: 'Switch A (In)'}, desc: 'Power Switch A from 5V' },
+        { from: {comp: 'src5', pin: 'vcc', label: '5V (VCC)'}, to: {comp: 'sw2', pin: 'a', label: 'Switch B (In)'}, desc: 'Power Switch B from 5V' },
+        { from: {comp: 'sw1', pin: 'b', label: 'Switch A (Out)'}, to: {comp: 'gate_and', pin: 'a', label: 'AND Gate (Input A)'}, desc: 'Connect Switch A output to AND Gate Input A' },
+        { from: {comp: 'sw2', pin: 'b', label: 'Switch B (Out)'}, to: {comp: 'gate_and', pin: 'b', label: 'AND Gate (Input B)'}, desc: 'Connect Switch B output to AND Gate Input B' },
+        { from: {comp: 'gate_and', pin: 'y', label: 'AND Gate (Out Y)'}, to: {comp: 'res', pin: 'a', label: 'Resistor (Terminal A)'}, desc: 'Connect AND Gate output Y to resistor' },
+        { from: {comp: 'res', pin: 'b', label: 'Resistor (Terminal B)'}, to: {comp: 'led', pin: 'a', label: 'LED (Anode A)'}, desc: 'Connect resistor to LED anode' },
+        { from: {comp: 'led', pin: 'k', label: 'LED (Cathode K)'}, to: {comp: 'src5', pin: 'gnd', label: '5V (GND)'}, desc: 'Return LED cathode to ground' }
+      ],
+      setup(E) {
+        if (E.sim.running) E.pauseSim();
+        E.mode = 'edit';
+        E.reset();
+        const s = E.place('src5', 80, 160);
+        const sw1 = E.place('sw', 240, 110, {closed: true});
+        const sw2 = E.place('sw', 240, 220, {closed: true});
+        const gate = E.place('gate_and', 390, 160);
+        const r = E.place('res', 520, 170);
+        const l = E.place('led', 660, 170, {color: 'Green'});
+        E.addWire({cid: s.id, pid: 'vcc'}, {cid: sw1.id, pid: 'a'});
+        E.addWire({cid: s.id, pid: 'vcc'}, {cid: sw2.id, pid: 'a'});
+        E.addWire({cid: sw1.id, pid: 'b'}, {cid: gate.id, pid: 'a'});
+        E.addWire({cid: sw2.id, pid: 'b'}, {cid: gate.id, pid: 'b'});
+        E.addWire({cid: gate.id, pid: 'y'}, {cid: r.id, pid: 'a'});
+        E.addWire({cid: r.id, pid: 'b'}, {cid: l.id, pid: 'a'});
+        E.addWire({cid: l.id, pid: 'k'}, {cid: s.id, pid: 'gnd'});
+        E.fitView();
+        E.validate(true);
+        E.renderInspector();
+        E.updateHint();
+        E.syncToolbar();
+        App.Store.save();
+      },
+      verify(E) {
+        const gate = E.comps.find(c => c.key === 'gate_and');
+        const l = E.comps.find(c => c.key === 'led');
+        const switches = E.comps.filter(c => c.key === 'sw');
+        if (!gate || !l || switches.length < 2) return false;
+        const prevStates = switches.map(s => s.props.closed);
+        switches[0].props.closed = true;
+        switches[1].props.closed = true;
+        const st = E.evaluate();
+        const works = st.leds[l.id];
+        switches.forEach((s, i) => s.props.closed = prevStates[i]);
+        return !!works;
+      }
+    },
+    {
+      id: 'dc_motor',
+      num: '07',
+      title: 'DC Motor Electromechanical Drive',
+      category: 'Actuators',
+      tier: 'Intermediate',
+      icon: 'activity',
+      tagline: 'Converting electric current into mechanical torque and rotary motion',
+      theory: 'A DC motor harnesses the Lorentz force: when electric current passes through coils within a magnetic field, it creates continuous rotational torque. Closing the switch drives direct current through the rotor, causing the propeller to spin.',
+      elements: [
+        { key: 'bat9', name: '9V Battery', count: 1, role: 'High-current DC Source' },
+        { key: 'sw', name: 'Switch SPST', count: 1, role: 'Motor power control' },
+        { key: 'motor', name: 'DC Motor', count: 1, role: 'Rotary actuator with spinning blades' }
+      ],
+      connections: [
+        { from: {comp: 'bat9', pin: 'pos', label: 'Battery (+9V)'}, to: {comp: 'sw', pin: 'a', label: 'Switch (Terminal A)'}, desc: 'Connect battery positive to switch input' },
+        { from: {comp: 'sw', pin: 'b', label: 'Switch (Terminal B)'}, to: {comp: 'motor', pin: 'a', label: 'Motor (Terminal A)'}, desc: 'Connect switched output to motor coil terminal A' },
+        { from: {comp: 'motor', pin: 'b', label: 'Motor (Terminal B)'}, to: {comp: 'bat9', pin: 'neg', label: 'Battery (− GND)'}, desc: 'Connect motor terminal B back to battery negative' }
+      ],
+      setup(E) {
+        if (E.sim.running) E.pauseSim();
+        E.mode = 'edit';
+        E.reset();
+        const bat = E.place('bat9', 140, 180);
+        const sw = E.place('sw', 320, 180, {closed: true});
+        const m = E.place('motor', 500, 170);
+        E.addWire({cid: bat.id, pid: 'pos'}, {cid: sw.id, pid: 'a'});
+        E.addWire({cid: sw.id, pid: 'b'}, {cid: m.id, pid: 'a'});
+        E.addWire({cid: m.id, pid: 'b'}, {cid: bat.id, pid: 'neg'});
+        E.fitView();
+        E.validate(true);
+        E.renderInspector();
+        E.updateHint();
+        E.syncToolbar();
+        App.Store.save();
+      },
+      verify(E) {
+        const m = E.comps.find(c => c.key === 'motor');
+        const sw = E.comps.find(c => c.key === 'sw');
+        const bat = E.comps.find(c => c.key === 'bat9' || c.key === 'src5');
+        if (!m || !bat) return false;
+        const old = sw ? sw.props.closed : true;
+        if (sw) sw.props.closed = true;
+        const st = E.evaluate();
+        const spins = st.motors[m.id];
+        if (sw) sw.props.closed = old;
+        return !!spins;
+      }
+    },
+    {
+      id: 'light_sensor',
+      num: '08',
+      title: 'LDR Photoresistor Night-Light',
+      category: 'Sensors',
+      tier: 'Intermediate',
+      icon: 'eye',
+      tagline: 'Light-dependent optical sensing and automatic threshold activation',
+      theory: 'Photoresistors (LDRs) change their electrical conductivity when photons hit their semiconductor substrate. In light conditions, the sensor outputs a HIGH signal that triggers indicator circuits or automation logic.',
+      elements: [
+        { key: 'src5', name: 'DC Source 5V', count: 1, role: '5V Power Supply' },
+        { key: 'ldr', name: 'Light Sensor (LDR)', count: 1, props: {active: true}, role: 'Photoconductive sensor' },
+        { key: 'res', name: '220Ω Resistor', count: 1, props: {value: '220Ω'}, role: 'Current limiter' },
+        { key: 'led', name: 'Yellow LED', count: 1, props: {color: 'Yellow'}, role: 'Light detection indicator' }
+      ],
+      connections: [
+        { from: {comp: 'src5', pin: 'vcc', label: '5V (VCC)'}, to: {comp: 'ldr', pin: 'vcc', label: 'Sensor (VCC)'}, desc: 'Power the light sensor module with +5V' },
+        { from: {comp: 'src5', pin: 'gnd', label: '5V (GND)'}, to: {comp: 'ldr', pin: 'gnd', label: 'Sensor (GND)'}, desc: 'Connect sensor ground' },
+        { from: {comp: 'ldr', pin: 'out', label: 'Sensor (OUT)'}, to: {comp: 'res', pin: 'a', label: 'Resistor (Terminal A)'}, desc: 'Connect sensor digital output to resistor' },
+        { from: {comp: 'res', pin: 'b', label: 'Resistor (Terminal B)'}, to: {comp: 'led', pin: 'a', label: 'LED (Anode A)'}, desc: 'Connect resistor to LED anode' },
+        { from: {comp: 'led', pin: 'k', label: 'LED (Cathode K)'}, to: {comp: 'src5', pin: 'gnd', label: '5V (GND)'}, desc: 'Return LED cathode to ground' }
+      ],
+      setup(E) {
+        if (E.sim.running) E.pauseSim();
+        E.mode = 'edit';
+        E.reset();
+        const s = E.place('src5', 100, 160);
+        const ldr = E.place('ldr', 260, 160, {active: true});
+        const r = E.place('res', 420, 160);
+        const l = E.place('led', 570, 160, {color: 'Yellow'});
+        E.addWire({cid: s.id, pid: 'vcc'}, {cid: ldr.id, pid: 'vcc'});
+        E.addWire({cid: s.id, pid: 'gnd'}, {cid: ldr.id, pid: 'gnd'});
+        E.addWire({cid: ldr.id, pid: 'out'}, {cid: r.id, pid: 'a'});
+        E.addWire({cid: r.id, pid: 'b'}, {cid: l.id, pid: 'a'});
+        E.addWire({cid: l.id, pid: 'k'}, {cid: s.id, pid: 'gnd'});
+        E.fitView();
+        E.validate(true);
+        E.renderInspector();
+        E.updateHint();
+        E.syncToolbar();
+        App.Store.save();
+      },
+      verify(E) {
+        const ldr = E.comps.find(c => c.key === 'ldr');
+        const l = E.comps.find(c => c.key === 'led');
+        const src = E.comps.find(c => c.key === 'src5' || c.key === 'bat9');
+        if (!ldr || !l || !src) return false;
+        const old = ldr.props.active;
+        ldr.props.active = true;
+        const st = E.evaluate();
+        const ok = st.leds[l.id];
+        ldr.props.active = old;
+        return !!ok;
+      }
+    }
+  ];
+
+  E.setExperiment = function (id) {
+    const exp = E.EXPERIMENTS.find(x => x.id === id);
+    if (!exp) return;
+    E.activeExp = id;
+    App.$$('.expt-card').forEach(c => c.classList.toggle('active', c.dataset.expId === id));
+    E.renderAssistant();
+    const pb = document.getElementById('epanel-body');
+    if (pb && pb.dataset.tab === 'guide') E.renderGuide();
+    App.UI.toast('Guided Experiment loaded: ' + exp.title, 'gold');
+  };
+
+  E.checkExperiment = function (exp) {
+    if (!exp) exp = E.EXPERIMENTS.find(x => x.id === E.activeExp) || E.EXPERIMENTS[0];
+    const compCounts = {};
+    E.comps.forEach(c => { compCounts[c.key] = (compCounts[c.key] || 0) + 1; });
+    
+    const elementsStatus = exp.elements.map(el => {
+      const placed = compCounts[el.key] || 0;
+      return {
+        key: el.key,
+        name: el.name,
+        role: el.role,
+        needed: el.count,
+        placed: placed,
+        ok: placed >= el.count
+      };
+    });
+
+    const allElementsOk = elementsStatus.every(e => e.ok);
+
+    // Evaluate connections
+    const uf = E.buildNets ? E.buildNets() : null;
+    const tk = (cid, pid) => cid + '.' + pid;
+    const connectionsStatus = exp.connections.map(conn => {
+      const cFrom = E.comps.find(c => c.key === conn.from.comp);
+      const cTo = E.comps.find(c => c.key === conn.to.comp);
+      let wired = false;
+      if (cFrom && cTo) {
+        wired = E.wires.some(w => 
+          (w.a.cid === cFrom.id && w.a.pid === conn.from.pin && w.b.cid === cTo.id && w.b.pid === conn.to.pin) ||
+          (w.a.cid === cTo.id && w.a.pid === conn.to.pin && w.b.cid === cFrom.id && w.b.pid === conn.from.pin)
+        );
+        if (!wired && uf) {
+          const rA = uf.find(tk(cFrom.id, conn.from.pin));
+          const rB = uf.find(tk(cTo.id, conn.to.pin));
+          if (rA && rB && rA === rB) wired = true;
+        }
+      }
+      return {
+        from: conn.from,
+        to: conn.to,
+        desc: conn.desc,
+        cFrom,
+        cTo,
+        wired
+      };
+    });
+
+    const allConnectionsOk = connectionsStatus.every(c => c.wired);
+    const isVerified = exp.verify(E);
+
+    // Compute active live step
+    let activeStep = null;
+    const missingEl = elementsStatus.find(e => !e.ok);
+    if (missingEl) {
+      activeStep = {
+        type: 'place',
+        compKey: missingEl.key,
+        compName: missingEl.name,
+        role: missingEl.role,
+        title: 'Place Component: ' + missingEl.name,
+        instruction: 'Add ' + missingEl.name + ' to the breadboard. Notice the highlighted item in the library on the left.'
+      };
+    } else {
+      const missingConn = connectionsStatus.find(c => !c.wired);
+      if (missingConn) {
+        activeStep = {
+          type: 'wire',
+          conn: missingConn,
+          cFrom: missingConn.cFrom,
+          cTo: missingConn.cTo,
+          title: 'Wire: ' + missingConn.from.label + ' → ' + missingConn.to.label,
+          instruction: missingConn.desc + '. Connect the two glowing terminal markers on the canvas.'
+        };
+      } else {
+        activeStep = {
+          type: 'complete',
+          title: 'Circuit Complete & Live',
+          instruction: 'All connections verified! The circuit is operational.'
+        };
+      }
+    }
+
+    const res = {
+      exp,
+      elements: elementsStatus,
+      connections: connectionsStatus,
+      allElementsOk,
+      allConnectionsOk,
+      isVerified,
+      activeStep,
+      complete: allElementsOk && (allConnectionsOk || isVerified)
+    };
+    E.lastCheckExp = res;
+    return res;
+  };
+
+  E.syncGuidedTargets = function (status) {
+    if (!status) status = E.checkExperiment();
+    const targetKey = (status.activeStep && status.activeStep.type === 'place') ? status.activeStep.compKey : null;
+    const items = document.querySelectorAll('#elib .lib-item');
+    items.forEach(el => {
+      const isTarget = el.dataset.key === targetKey;
+      el.classList.toggle('guided-target', isTarget);
+    });
+  };
+
+  E.startCleanExperiment = function (id) {
+    const exp = E.EXPERIMENTS.find(x => x.id === id) || E.EXPERIMENTS.find(x => x.id === E.activeExp) || E.EXPERIMENTS[0];
+    if (E.sim.running) E.pauseSim();
+    E.mode = 'edit';
+    E.reset();
+    E.setExperiment(exp.id);
+    E.validate(true);
+    E.renderAssistant();
+    App.UI.toast('Clean breadboard ready for ' + exp.title + '! Follow the guided steps.', 'gold');
+  };
+
+  E.addMissingComponent = function (key) {
+    if (E.mode === 'sim') {
+      App.UI.toast('Switching to Edit mode to place component.');
+      E.mode = 'edit';
+      if (E.sim.running) E.pauseSim();
+      E.syncToolbar();
+    }
+    // Calculate a clean free spot
+    let px = 180 + (E.comps.length % 4) * 140;
+    let py = 120 + Math.floor(E.comps.length / 4) * 120;
+    const c = E.place(key, px, py);
+    E.fitView();
+    E.validate(true);
+    E.renderAssistant();
+    App.UI.toast('Placed ' + DEFS[key].name + ' on canvas.');
+    return c;
+  };
+
+  E.autoAssembleExperiment = function (id) {
+    const exp = E.EXPERIMENTS.find(x => x.id === id) || E.EXPERIMENTS.find(x => x.id === E.activeExp) || E.EXPERIMENTS[0];
+    exp.setup(E);
+    E.setExperiment(exp.id);
+    E.validate(true);
+    E.renderAssistant();
+    App.UI.toast('Circuit assembled cleanly! Press Run to simulate.', 'gold');
+  };
+
+  E.renderAssistant = function () {
+    const asst = document.getElementById('e-assistant');
+    if (!asst) return;
+    if (!E.activeExp) E.activeExp = 'first_light';
+    const status = E.checkExperiment();
+    const exp = status.exp;
+    E.syncGuidedTargets(status);
+
+    const stepChip = status.complete
+      ? `<span class="asst-step-chip ok">${App.I('check', 11)} <b>Circuit Verified &amp; Running</b></span>`
+      : status.activeStep.type === 'place'
+        ? `<span class="asst-step-chip place">${App.I('plus', 11)} <b>Next: Place ${App.esc(status.activeStep.compName)}</b></span>`
+        : `<span class="asst-step-chip wire">${App.I('zap', 11)} <b>Next: Wire ${App.esc(status.activeStep.title)}</b></span>`;
+
+    const actionsHTML = `
+      <button class="btn sm primary" id="asst-clean-btn" style="padding:2px 8px;font-size:11px" title="Reset and guide step-by-step">${App.I('glove', 11)} Build Yourself</button>
+      <button class="btn sm gold" id="asst-assemble-btn" style="padding:2px 8px;font-size:11px" title="Auto assemble circuit">${App.I('play', 11)} ${status.complete ? 'Reassemble' : 'Auto-Assemble'}</button>
+      <button class="btn sm ghost" id="asst-browse-btn" style="padding:2px 7px;font-size:11px" title="Browse all experiments">${App.I('book', 11)} All</button>
+      <button class="btn sm ghost" id="asst-guide-tab-btn" style="padding:2px 7px;font-size:11px">Theory</button>
+      <button class="asst-toggle" id="asst-toggle-btn" title="${E.asstCollapsed ? 'Expand Details' : 'Collapse Details'}">${App.I('chev', 14)}</button>
+    `;
+
+    if (E.asstCollapsed) {
+      asst.className = 'stage-assistant collapsed';
+      asst.innerHTML = `<div class="asst-head">
+        <div class="asst-title-area">
+          <div class="asst-title">${App.I(exp.icon, 14)} <span><b>${exp.num}</b> · ${App.esc(exp.title)}</span> <span class="asst-tier">${exp.tier}</span></div>
+          ${stepChip}
+        </div>
+        <div class="asst-actions">
+          ${actionsHTML}
+        </div>
+      </div>`;
+    } else {
+      asst.className = 'stage-assistant';
+      let html = `<div class="asst-head">
+        <div class="asst-title-area">
+          <div class="asst-title">${App.I(exp.icon, 14)} <span><b>${exp.num}</b> · ${App.esc(exp.title)}</span> <span class="asst-tier">${exp.tier}</span></div>
+          ${stepChip}
+        </div>
+        <div class="asst-actions">
+          ${actionsHTML}
+        </div>
+      </div>
+      <div class="asst-body">
+        <div class="asst-desc">${App.esc(exp.tagline)}</div>
+        <div class="asst-grid-row">
+          <div class="asst-col">
+            <div class="asst-col-title">${App.I('cpu', 11)} 1. Suggested Elements (${status.elements.filter(e => e.ok).length}/${status.elements.length})</div>
+            <div class="asst-elems">`;
+
+      status.elements.forEach(el => {
+        if (el.ok) {
+          html += `<span class="asst-elem-tag ok">${App.I('check', 11)} ${App.esc(el.name)} (${el.placed}/${el.needed})</span>`;
+        } else {
+          html += `<span class="asst-elem-tag missing">${App.I('plus', 11)} ${App.esc(el.name)} <button class="asst-add-btn" data-add="${el.key}">+ Add</button></span>`;
+        }
+      });
+
+      html += `</div>
+            ${status.activeStep.type === 'place' ? `<button class="btn sm gold asst-quick-add" data-add="${status.activeStep.compKey}" style="margin-top:6px;padding:2px 8px;font-size:10.5px">+ Quick-Place ${App.esc(status.activeStep.compName)}</button>` : ''}
+          </div>
+          <div class="asst-col">
+            <div class="asst-col-title">${App.I('wire', 11)} 2. Circuit Connections (${status.connections.filter(c => c.wired).length}/${status.connections.length})</div>
+            <div class="asst-wires">`;
+
+      status.connections.forEach((w, idx) => {
+        const isDone = w.wired || status.complete;
+        const isCurrent = !status.complete && status.activeStep.type === 'wire' && status.activeStep.conn === w;
+        html += `<div class="asst-wire ${isDone ? 'done' : ''} ${isCurrent ? 'current' : ''}">
+          ${App.I(isDone ? 'check' : isCurrent ? 'zap' : 'wire', 11)}
+          <span><b>Step ${idx + 1}:</b> ${App.esc(w.desc)}</span>
+        </div>`;
+      });
+
+      html += `</div>
+          </div>
+        </div>`;
+
+      if (status.complete) {
+        html += `<div class="asst-success">
+          ${App.I('zap', 13)}
+          <span>Circuit Complete! All electrical paths active &amp; simulation running.</span>
+          <button class="btn sm primary" id="asst-next-btn" style="margin-left:auto;padding:2px 8px;font-size:11px">Next Experiment &rarr;</button>
+        </div>`;
+        if (!E.sim.running && !E._autoSimStarted) {
+          E._autoSimStarted = true;
+          setTimeout(() => {
+            E.startSim();
+            E.syncToolbar();
+            App.UI.toast('🎉 Circuit complete! Simulation started — watch it work!', 'gold');
+            App.Missions.bump('ledLit');
+          }, 150);
+        }
+      } else {
+        E._autoSimStarted = false;
+        html += `<div style="font-size:11px;color:var(--ink-soft);margin-top:5px">💡 <em>Follow the pulsing gold cues in the library and on circuit terminals.</em></div>`;
+      }
+
+      html += `</div>`;
+      asst.innerHTML = html;
+    }
+
+    // Bind common Assistant actions
+    const toggle = document.getElementById('asst-toggle-btn');
+    if (toggle) toggle.addEventListener('click', () => { E.asstCollapsed = !E.asstCollapsed; E.renderAssistant(); });
+
+    const browse = document.getElementById('asst-browse-btn');
+    if (browse) browse.addEventListener('click', E.openExperimentsHub);
+
+    const cleanBtn = document.getElementById('asst-clean-btn');
+    if (cleanBtn) cleanBtn.addEventListener('click', () => E.startCleanExperiment(exp.id));
+
+    const assemb = document.getElementById('asst-assemble-btn');
+    if (assemb) assemb.addEventListener('click', () => E.autoAssembleExperiment(exp.id));
+
+    const guideTab = document.getElementById('asst-guide-tab-btn');
+    if (guideTab) guideTab.addEventListener('click', () => E.panelTab('guide'));
+
+    const nextBtn = document.getElementById('asst-next-btn');
+    if (nextBtn) {
+      nextBtn.addEventListener('click', () => {
+        const curIdx = E.EXPERIMENTS.findIndex(x => x.id === exp.id);
+        const nextExp = E.EXPERIMENTS[(curIdx + 1) % E.EXPERIMENTS.length];
+        E.setExperiment(nextExp.id);
+      });
+    }
+
+    App.$$('[data-add]', asst).forEach(b => {
+      b.addEventListener('click', e => {
+        e.stopPropagation();
+        E.addMissingComponent(b.dataset.add);
+      });
+    });
+  };
+
+  E.renderGuide = function () {
+    const body = document.getElementById('epanel-body');
+    if (!body || (body.dataset.tab && body.dataset.tab !== 'guide')) return;
+    const status = E.checkExperiment();
+    const exp = status.exp;
+
+    let html = `
+    <div style="margin-bottom:12px">
+      <div class="tag">${exp.tier} · ${exp.category}</div>
+      <h3 style="font-size:16px;margin:4px 0 6px;color:var(--olive-forest)">${exp.num} · ${App.esc(exp.title)}</h3>
+      <p class="small muted" style="line-height:1.45">${App.esc(exp.theory)}</p>
+    </div>
+
+    <div class="hr"></div>
+
+    <div class="track-label" style="margin-bottom:8px">Required Electrical Elements</div>
+    <div class="stack" style="gap:6px;margin-bottom:14px">`;
+
+    status.elements.forEach(el => {
+      html += `<div class="insp-row" style="padding:6px 0">
+        <div>
+          <b style="font-size:12.5px">${App.esc(el.name)}</b>
+          <div class="tiny muted">${App.esc(el.role)}</div>
+        </div>
+        <div>
+          ${el.ok
+            ? '<span class="chip gold">' + App.I('check', 11) + ' Placed (' + el.placed + ')</span>'
+            : '<button class="btn sm primary" data-add="' + el.key + '" style="padding:4px 9px;font-size:11px">+ Place</button>'}
+        </div>
+      </div>`;
+    });
+
+    html += `</div>
+
+    <div class="track-label" style="margin-bottom:8px">Step-by-Step Wiring Matrix</div>
+    <div class="stack" style="gap:6px;margin-bottom:14px">`;
+
+    exp.connections.forEach((w, i) => {
+      html += `<div style="background:var(--ivory);border:1px solid var(--line);border-radius:10px;padding:8px 10px;font-size:12px">
+        <div style="font-weight:700;color:var(--olive-forest);margin-bottom:3px">Connection ${i + 1}</div>
+        <div class="small">${App.esc(w.desc)}</div>
+        <div class="tiny muted" style="margin-top:4px;font-family:var(--mono)">${App.esc(w.from.label)} → ${App.esc(w.to.label)}</div>
+      </div>`;
+    });
+
+    html += `</div>
+
+    <div class="track-label" style="margin-bottom:8px">Circuit Working Verification</div>
+    <div style="background:${status.complete ? 'rgba(137,150,107,.18)' : 'rgba(197,166,106,.14)'};border:1px solid ${status.complete ? 'var(--sage)' : 'rgba(197,166,106,.5)'};border-radius:12px;padding:12px;margin-bottom:14px">
+      <div style="font-weight:700;color:var(--olive-forest);display:flex;align-items:center;gap:6px">
+        ${App.I(status.complete ? 'check' : 'alert', 14)}
+        <span>${status.complete ? 'Circuit Complete & Functional' : 'Circuit Incomplete'}</span>
+      </div>
+      <div class="small muted" style="margin-top:4px">
+        ${status.complete
+          ? 'Current is flowing cleanly through the designated electrical path. Simulation is actively testing all components.'
+          : 'Place all suggested elements and connect the wires as guided to complete the circuit loop.'}
+      </div>
+    </div>
+
+    <div class="btn-row" style="margin-top:14px">
+      <button class="btn sm primary" id="guide-assemble-btn">${App.I('play', 12)} Auto-Assemble & Test</button>
+      <button class="btn sm ghost" id="guide-hub-btn">${App.I('book', 12)} Browse All Experiments</button>
+    </div>`;
+
+    body.innerHTML = html;
+
+    const assemb = document.getElementById('guide-assemble-btn');
+    if (assemb) assemb.addEventListener('click', () => E.autoAssembleExperiment(exp.id));
+
+    const hub = document.getElementById('guide-hub-btn');
+    if (hub) hub.addEventListener('click', E.openExperimentsHub);
+
+    App.$$('[data-add]', body).forEach(b => {
+      b.addEventListener('click', () => E.addMissingComponent(b.dataset.add));
+    });
+  };
+
+  E.openExperimentsHub = function () {
+    const hubCard = exp => `
+      <div class="exp-hub-card">
+        <div>
+          <div class="meta">
+            <span class="chip gold">${exp.num}</span>
+            <span class="tier-pill">${exp.tier}</span>
+            <span class="tiny muted">· ${exp.category}</span>
+          </div>
+          <h3 style="margin-top:6px">${App.I(exp.icon, 16)} ${App.esc(exp.title)}</h3>
+          <p class="small muted" style="margin:6px 0">${App.esc(exp.tagline)}</p>
+          <div class="elements-pill">
+            ${exp.elements.map(el => '<span class="pill">' + App.esc(el.name) + '</span>').join('')}
+          </div>
+        </div>
+        <div class="acts">
+          <button class="btn sm primary" data-hub-start="${exp.id}">${App.I('play', 12)} Start Guided</button>
+          <button class="btn sm ghost" data-hub-assemble="${exp.id}">${App.I('zap', 12)} Load & Run</button>
+        </div>
+      </div>`;
+
+    const m = App.UI.modal({
+      title: 'Guided Electronics Experiments — Step-by-Step Laboratory',
+      wide: true,
+      body: `
+      <p class="small muted" style="margin-bottom:14px">
+        Select an experiment to get interactive component suggestions, pin wiring checklists, and real-time circuit verification that powers up your circuit automatically.
+      </p>
+      <div class="grid c2" style="grid-template-columns:repeat(auto-fit,minmax(270px,1fr));gap:14px;max-height:65vh;overflow-y:auto;padding-right:4px">
+        ${E.EXPERIMENTS.map(hubCard).join('')}
+      </div>`
+    });
+
+    App.$$('[data-hub-start]', m.el).forEach(b => {
+      b.addEventListener('click', () => {
+        E.setExperiment(b.dataset.hubStart);
+        m.close();
+      });
+    });
+
+    App.$$('[data-hub-assemble]', m.el).forEach(b => {
+      b.addEventListener('click', () => {
+        E.autoAssembleExperiment(b.dataset.hubAssemble);
+        m.close();
+      });
+    });
+  };
+
+  /* ---------- example circuits ---------- */
+  E.loadExample = function (name) {
+    if (E.sim.running) E.pauseSim();
+    E.mode = 'edit';
+    E.reset();
+    if (name === 'blink') {
+      const uno = E.place('arduino', 60, 40), r = E.place('res', 340, 250), l = E.place('led', 500, 250), g = E.place('gnd', 500, 350);
+      E.addWire({cid: uno.id, pid: 'D13'}, {cid: r.id, pid: 'a'});
+      E.addWire({cid: r.id, pid: 'b'}, {cid: l.id, pid: 'a'});
+      E.addWire({cid: l.id, pid: 'k'}, {cid: g.id, pid: 'g'});
+      E.pinModes[uno.id] = {D13: {mode: 'output', state: 'HIGH', blink: true, period: 1000}};
+    } else if (name === 'button') {
+      const bat = E.place('bat9', 100, 190), b = E.place('btn', 300, 190), r = E.place('res', 440, 190), l = E.place('led', 600, 190);
+      E.addWire({cid: bat.id, pid: 'pos'}, {cid: b.id, pid: 'a'});
+      E.addWire({cid: b.id, pid: 'b'}, {cid: r.id, pid: 'a'});
+      E.addWire({cid: r.id, pid: 'b'}, {cid: l.id, pid: 'a'});
+      E.addWire({cid: l.id, pid: 'k'}, {cid: bat.id, pid: 'neg'});
+    } else { // 'led' — battery + resistor + LED
+      const bat = E.place('bat9', 160, 170), r = E.place('res', 360, 170), l = E.place('led', 520, 170);
+      E.addWire({cid: bat.id, pid: 'pos'}, {cid: r.id, pid: 'a'});
+      E.addWire({cid: r.id, pid: 'b'}, {cid: l.id, pid: 'a'});
+      E.addWire({cid: l.id, pid: 'k'}, {cid: bat.id, pid: 'neg'});
+    }
+    E.fitView(); E.validate(true);
+    E.renderInspector(); E.updateHint(); E.syncToolbar(); E.renderAssistant();
+    App.Store.save();
+  };
+
+  E.openExamples = function () {
+    const card = (key, icon, title, desc) => `<div class="card"><h3>${App.I(icon, 15)} ${title}</h3><p class="small muted" style="margin-bottom:10px">${desc}</p><button class="btn sm primary" data-ex="${key}">${App.I('play', 12)} Load template</button></div>`;
+    const m = App.UI.modal({
+      title: 'Circuit Templates — Load a pre-wired schematic',
+      wide: true,
+      body: '<div class="grid c3" style="grid-template-columns:repeat(auto-fit,minmax(215px,1fr))">' +
+        card('led', 'zap', 'LED + Battery', '9V battery → 220Ω resistor → LED. The classic first circuit — press Run and the LED lights instantly.') +
+        card('blink', 'cpu', 'Blink D13', 'Arduino Uno D13 → resistor → LED → GND, blink preset applied. Run it and watch the LED pulse at 1 Hz.') +
+        card('button', 'glove', 'Button + LED', 'Battery → push button → resistor → LED. Run, then press the button on the canvas to light the LED.') +
+        '</div>'
+    });
+    App.$$('[data-ex]', m.el).forEach(b => b.addEventListener('click', () => {
+      E.loadExample(b.dataset.ex);
+      m.close();
+      App.UI.toast('Template loaded — press Run to simulate.');
+    }));
+  };
+
+/* ---------- toolbar ---------- */
   E.bindToolbar = function () {
     const $ = id => document.getElementById(id);
     const on = (id, ev, fn) => { const el = $(id); if (el) el.addEventListener(ev, fn); else console.warn('toolbar element missing:', id); };
-    $('#emode-seg').addEventListener('click', e => {
+    // NOTE: pass plain ids to the $ helper (getElementById) — never '#id'.
+    // The old $('#emode-seg') call returned null and the thrown TypeError
+    // silently killed EVERY toolbar binding below (Run/Pause/Stop/Reset/
+    // Validate/PNG/Save/zoom/panel tabs were all dead).
+    on('emode-seg', 'click', e => {
       const b = e.target.closest('button'); if (!b) return;
-      if (b.dataset.m === 'sim' && E.mode !== 'sim') { E.startSim(); }
-      if (b.dataset.m === 'edit' && E.sim.running) { E.pauseSim(); E.mode = 'edit'; }
+      if (b.dataset.m === 'sim') { E.startSim(); }                    // starts or resumes
+      else { if (E.sim.running) E.pauseSim(); E.mode = 'edit'; }      // always returns to edit
       E.syncToolbar(); E.updateHint();
     });
     on('e-run', 'click', () => { E.startSim(); E.syncToolbar(); });
     on('e-pause', 'click', () => { E.pauseSim(); E.syncToolbar(); });
     on('e-stop', 'click', () => { E.stopSim(); E.syncToolbar(); });
     on('e-reset', 'click', () => { E.resetSim(); E.syncToolbar(); });
+    on('e-guide', 'click', () => E.openExperimentsHub());
+    on('e-examples', 'click', E.openExamples);
     on('e-rotate', 'click', E.rotateSel);
     on('e-del', 'click', E.deleteSel);
     on('e-validate', 'click', () => {
@@ -2245,27 +3590,31 @@ E.markDirty = function () {
       }
     });
     on('e-save', 'click', () => {
-      const id = App.Store.state.ui.activeProjectId;
-      if (!id) {
-        App.UI.prompt('Save as new project', `<div class="field"><label>Project name</label><input class="input" name="name" value="My Circuit" maxlength="60"></div><div class="field"><label>Description</label><textarea class="input" name="desc" placeholder="What does this circuit do?"></textarea></div>`)
-          .then(v => {
-            if (!v) return;
-            const pr = App.Projects.create(v.name, v.desc, 'electronics');
-            pr.data.electronics = E.serialize();
-            App.Store.state.ui.activeProjectId = pr.id;
-            App.Store.save();
-            E.persistIntoProject();
-            const sel = $('e-proj');
-            sel.innerHTML = App.Store.state.projects.map(p => '<option value="' + p.id + '"' + (p.id === pr.id ? ' selected' : '') + '>' + App.esc(p.name) + '</option>').join('');
-            App.UI.toast('Project "' + pr.name + '" created and saved.');
-          });
-      } else {
-        E.persistIntoProject();
-        const chip = $('save-chip');
-        chip.style.display = '';
-        chip.textContent = 'Saved \u2713 ' + new Date().toLocaleTimeString(undefined, {hour: '2-digit', minute: '2-digit'});
-        App.UI.toast('Circuit saved to project.');
-      }
+      App.Auth.requireLogin(() => {
+        const id = App.Store.state.ui.activeProjectId;
+        if (!id) {
+          App.UI.prompt('Save as new project', `<div class="field"><label>Project name</label><input class="input" name="name" value="My Circuit" maxlength="60"></div><div class="field"><label>Description</label><textarea class="input" name="desc" placeholder="What does this circuit do?"></textarea></div>`)
+            .then(v => {
+              if (!v) return;
+              const pr = App.Projects.create(v.name, v.desc, 'electronics');
+              pr.data.electronics = E.serialize();
+              App.Store.state.ui.activeProjectId = pr.id;
+              App.Store.save();
+              E.persistIntoProject();
+              const sel = $('e-proj');
+              if (sel) sel.innerHTML = App.Store.state.projects.map(p => '<option value="' + p.id + '"' + (p.id === pr.id ? ' selected' : '') + '>' + App.esc(p.name) + '</option>').join('');
+              App.UI.toast('Project "' + pr.name + '" created and saved.');
+            });
+        } else {
+          E.persistIntoProject();
+          const chip = $('save-chip');
+          if (chip) {
+            chip.style.display = '';
+            chip.textContent = 'Saved \u2713 ' + new Date().toLocaleTimeString(undefined, {hour: '2-digit', minute: '2-digit'});
+          }
+          App.UI.toast('Circuit saved to project.');
+        }
+      }, 'Save Circuit Project');
     });
     on('z-in', 'click', () => E.zoom(1.2));
     on('z-out', 'click', () => E.zoom(0.83));
@@ -2281,11 +3630,14 @@ E.markDirty = function () {
     App.$$('#epanel-tabs button').forEach(b => b.classList.toggle('active', b.dataset.t === t));
     const body = document.getElementById('epanel-body');
     if (!body) return;
+    // set the tab FIRST — the render helpers below guard on body.dataset.tab,
+    // so rendering before this assignment left the panel empty on first click
+    body.dataset.tab = t;
     if (t === 'insp') E.renderInspector();
     if (t === 'pins') E.renderPins();
+    if (t === 'guide') E.renderGuide();
     if (t === 'log') E.renderLog();
     if (t === 'issues') E.renderIssues();
-    body.dataset.tab = t;
   };
   E.syncToolbar = function () {
     const seg = document.getElementById('emode-seg');
@@ -3345,8 +4697,22 @@ App.SimLab = {
   record(sess) {
     const st = App.Store.state;
     st.simSessions = st.simSessions || [];
-    st.simSessions.unshift(sess);
-    if (st.simSessions.length > 30) st.simSessions.length = 30;
+    // keep browser storage small: decimate dense tracks & trim event logs
+    // before persisting (charts render the same shape with ~1200 points)
+    const slimTrack = t => {
+      if (!t || !Array.isArray(t.data)) return t;
+      const CAP = 1200;
+      if (t.data.length <= CAP) return t;
+      const step = Math.ceil(t.data.length / CAP);
+      const out = [];
+      for (let i = 0; i < t.data.length; i += step) out.push(t.data[i]);
+      const last = t.data[t.data.length - 1];
+      if (out[out.length - 1] !== last) out.push(last);
+      return Object.assign({}, t, {data: out});
+    };
+    const slim = Object.assign({}, sess, {tracks: (sess.tracks || []).map(slimTrack), events: (sess.events || []).slice(-60)});
+    st.simSessions.unshift(slim);
+    if (st.simSessions.length > 20) st.simSessions.length = 20;
     // sync into the linked project (cross-lab workflow, autosave on)
     const pid = App.Store.state.ui.activeProjectId;
     if (pid && App.Store.state.settings.autosave) {
@@ -3641,123 +5007,148 @@ SL.drawWave = function () {
 (function () {
   const esc = App.esc, I = App.I;
 
-  /* ================= LOGIN ================= */
-  App.Routes.login = {
-    title: 'Welcome', crumb: 'CircuitVerse Studio',
-    render() {
-      const art = `<svg width="420" height="260" viewBox="0 0 420 260" fill="none" style="margin-bottom:6px">
-        <path d="M20 200h70l24-90 30 130 26-64h48" stroke="#A8B18A" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
-        <circle cx="218" cy="176" r="7" fill="#C5A66A"/><circle cx="218" cy="176" r="13" stroke="#C5A66A" opacity=".4"/>
-        <circle cx="114" cy="110" r="4" fill="#A8B18A"/><circle cx="170" cy="240" r="4" fill="#A8B18A"/>
-        <path d="M250 210h60l18-56 22 78 16-40h36" stroke="#89966B" stroke-width="2" opacity=".8" stroke-linecap="round" stroke-linejoin="round"/>
-        <path d="M40 40c26 18 40 42 44 76" stroke="#C5A66A" stroke-width="1.6" opacity=".7"/>
-        <ellipse cx="330" cy="90" rx="66" ry="22" stroke="#A8B18A" opacity=".6"/>
-        <path d="M322 68l30 26-30 26" stroke="#C5A66A" opacity=".8" fill="none"/>
-        <circle cx="264" cy="90" r="4.5" fill="#F6F0E4"/>
-        <circle cx="80" cy="230" r="2.4" fill="#89966B"/><circle cx="300" cy="220" r="2.4" fill="#89966B"/><circle cx="382" cy="40" r="2.4" fill="#C5A66A"/>
-      </svg>`;
-      return `
-      <div class="login-hero" style="min-height:calc(100vh - 130px);margin:-26px -40px -40px;border:0">
-        <div class="login-left">
-          ${art}
-          <span class="tag" style="color:#C5A66A">CircuitVerse Studio · v${App.VERSION}</span>
-          <h1>Welcome to your engineering universe.</h1>
-          <p class="lead">One universe, three laboratories. Design real circuits with manual wiring, fly simulated satellites and rockets, analyse everything in Mission Control — and publish your work to GitHub.</p>
-          <div class="login-labs">
-            <div class="login-lab">${I('cpu', 18)}<div><b>Electronics Lab</b><span>Design. Connect. Build.</span></div></div>
-            <div class="login-lab">${I('rocket', 18)}<div><b>Aerospace Lab</b><span>Explore. Engineer. Discover.</span></div></div>
-            <div class="login-lab">${I('activity', 18)}<div><b>Simulation Lab</b><span>Test. Analyse. Achieve.</span></div></div>
-          </div>
-          <svg class="botanical" width="300" height="220" viewBox="0 0 300 220" fill="none"><path d="M10 210c80-6 130-40 150-110" stroke="#A8B18A" stroke-width="2"/><path d="M60 170c22-3 40-20 43-46-26 3-44 20-43 46zM100 130c22-3 40-20 43-46-26 3-44 20-43 46zM30 195c22-3 40-20 43-46-26 3-44 20-43 46z" fill="#A8B18A"/></svg>
-        </div>
-        <div class="login-right">
-          <div class="login-card">
-            <div class="auth-tabs">
-              <button class="btn primary" id="tab-signin" style="flex:1">Sign in</button>
-              <button class="btn ghost" id="tab-create" style="flex:1">Create account</button>
-            </div>
-            <div class="form-err" id="auth-err"></div>
-            <form id="auth-form" novalidate>
-              <div class="field" id="f-name" style="display:none"><label>Display name</label><input class="input" id="a-name" autocomplete="name" placeholder="e.g. Aisha Khan"></div>
-              <div class="field"><label>Email</label><input class="input" id="a-email" type="email" autocomplete="email" placeholder="you@example.com"></div>
-              <div class="field"><label>Password</label>
-                <div class="input-wrap"><input class="input" id="a-pass" type="password" autocomplete="current-password" placeholder="••••••••" style="padding-right:40px">
-                <button type="button" class="eye" id="a-eye" title="Show / hide password">${I('eye', 16)}</button></div>
-              </div>
-              <button class="btn primary" id="a-submit" type="submit" style="width:100%;padding:12px">Sign in</button>
-            </form>
-            <div class="row" style="justify-content:space-between;margin-top:12px">
-              <button class="link-btn" id="a-forgot">Forgot password?</button>
-              <button class="link-btn" id="a-guest">Continue as Guest →</button>
-            </div>
-            <div class="auth-note">${I('alert', 13)} <b>Honest note:</b> this build stores accounts locally in your browser. Passwords are salted &amp; SHA-256 hashed and never stored as plain text — but this is demo-grade authentication, not production security. No data leaves your device.</div>
-          </div>
-        </div>
-      </div>`;
-    },
-    mount() {
-      let mode = 'signin';
-      const err = document.getElementById('auth-err');
-      const show = m => { err.textContent = m; err.style.display = m ? 'block' : 'none'; };
-      const setMode = m => {
-        mode = m;
-        document.getElementById('f-name').style.display = m === 'create' ? 'block' : 'none';
-        document.getElementById('tab-signin').className = m === 'signin' ? 'btn primary' : 'btn ghost';
-        document.getElementById('tab-create').className = m === 'create' ? 'btn primary' : 'btn ghost';
-        document.getElementById('a-submit').textContent = m === 'create' ? 'Create account' : 'Sign in';
-        show('');
-      };
-      document.getElementById('tab-signin').addEventListener('click', () => setMode('signin'));
-      document.getElementById('tab-create').addEventListener('click', () => setMode('create'));
-      document.getElementById('a-eye').addEventListener('click', () => {
-        const p = document.getElementById('a-pass');
-        const vis = p.type === 'password';
-        p.type = vis ? 'text' : 'password';
-        document.getElementById('a-eye').innerHTML = I(vis ? 'eyeoff' : 'eye', 16);
-      });
-      document.getElementById('auth-form').addEventListener('submit', e => {
-        e.preventDefault();
-        const email = document.getElementById('a-email').value.trim();
-        const pass = document.getElementById('a-pass').value;
-        if (mode === 'create') {
-          const r = App.Auth.register(document.getElementById('a-name').value, email, pass);
-          if (!r.ok) return show(r.msg);
-          App.UI.toast('Account created — welcome, ' + App.Auth.current().name + '!', 'gold');
-          App.Router.go('dashboard'); App.Router.render();
-        } else {
-          const r = App.Auth.login(email, pass);
-          if (!r.ok) return show(r.msg);
-          App.UI.toast('Welcome back, ' + App.Auth.current().name + '.');
-          App.Router.go('dashboard'); App.Router.render();
-        }
-      });
-      document.getElementById('a-guest').addEventListener('click', () => {
-        App.Auth.guest();
-        App.UI.toast('Exploring as Guest — data stays in this browser and can be upgraded to an account later.');
-        App.Router.go('dashboard'); App.Router.render();
-      });
-      document.getElementById('a-forgot').addEventListener('click', () => {
-        App.UI.modal({title: 'Forgot password',
-          body: '<p class="small muted">This build has no email backend, so it cannot send reset links. If you know the email of a <b>local account</b>, you can reset its password directly below (works only in this browser).</p>'
-            + '<div class="field"><label>Account email</label><input class="input" id="fp-email" type="email"></div>'
-            + '<div class="field"><label>New password (min 8 chars)</label><input class="input" id="fp-pass" type="password"></div>',
-          footer: '<button class="btn ghost" onclick="this.closest(\'.modal-overlay\').remove()">Cancel</button><button class="btn primary" id="fp-go">Reset password</button>'});
-        document.getElementById('fp-go').addEventListener('click', () => {
-          const r = App.Auth.resetLocalPassword(document.getElementById('fp-email').value.trim().toLowerCase(), document.getElementById('fp-pass').value);
-          App.UI.toast(r.ok ? 'Password reset in this browser. You can sign in now.' : r.msg, r.ok ? 'ok' : 'err');
-          if (r.ok) document.querySelector('.modal-overlay:last-of-type') && document.querySelector('.modal-overlay:last-of-type').remove();
-        });
-      });
-      setTimeout(() => { const el = document.getElementById(mode === 'create' ? 'a-name' : 'a-email'); if (el) el.focus(); }, 100);
-    }
-  };
-
-  /* ================= DASHBOARD ================= */
+  /* ================= LAB ARTWORK ================= */
   const LAB_ART = {
     electronics: `<svg viewBox="0 0 400 220" class="art" preserveAspectRatio="xMidYMid slice"><defs><linearGradient id="ge" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#46552B"/><stop offset="1" stop-color="#2A3618"/></linearGradient></defs><rect width="400" height="220" fill="url(#ge)"/><path d="M30 170h90l28-84 34 118 28-62h50" stroke="#A8B18A" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round"/><circle cx="260" cy="142" r="9" fill="#C5A66A"/><circle cx="260" cy="142" r="17" stroke="#C5A66A" opacity=".35" fill="none"/><rect x="40" y="36" width="120" height="70" rx="10" fill="none" stroke="#89966B" stroke-width="2.5"/><path d="M60 60h30M60 75h60M60 90h45" stroke="#89966B" stroke-width="2" opacity=".7"/><rect x="300" y="50" width="60" height="90" rx="8" fill="#F6F0E4" opacity=".14"/><circle cx="330" cy="80" r="5" fill="#A8B18A"/><circle cx="330" cy="100" r="5" fill="#A8B18A"/><circle cx="330" cy="120" r="5" fill="#C5A66A"/></svg>`,
     aerospace: `<svg viewBox="0 0 400 220" class="art" preserveAspectRatio="xMidYMid slice"><defs><linearGradient id="ga" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#354321"/><stop offset="1" stop-color="#1E2812"/></linearGradient></defs><rect width="400" height="220" fill="url(#ga)"/><ellipse cx="200" cy="130" rx="150" ry="46" stroke="#89966B" fill="none" opacity=".7"/><ellipse cx="200" cy="130" rx="110" ry="32" stroke="#A8B18A" fill="none" opacity=".5"/><circle cx="290" cy="112" r="8" fill="#C5A66A"/><circle cx="290" cy="112" r="13" stroke="#C5A66A" opacity=".4" fill="none"/><path d="M200 44c10 10 16 26 16 44l-9 8h-14l-9-8c0-18 6-34 16-44z" fill="#F6F0E4" opacity=".92"/><path d="M188 92l-8 16 11-3M212 92l8 16-11-3" fill="#C5A66A"/><circle cx="80" cy="50" r="2.5" fill="#F6F0E4" opacity=".8"/><circle cx="340" cy="60" r="2" fill="#F6F0E4" opacity=".7"/><circle cx="60" cy="160" r="2" fill="#F6F0E4" opacity=".6"/><circle cx="360" cy="170" r="3" fill="#C5A66A" opacity=".8"/></svg>`,
     simulation: `<svg viewBox="0 0 400 220" class="art" preserveAspectRatio="xMidYMid slice"><defs><linearGradient id="gs" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#46552B"/><stop offset="1" stop-color="#354321"/></linearGradient></defs><rect width="400" height="220" fill="url(#gs)"/><rect x="50" y="40" width="300" height="150" rx="14" fill="#F6F0E4" opacity=".12"/><path d="M70 130h30l16-40 20 76 16-48h26l14-28 18 56 12-24h60" stroke="#C5A66A" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round"/><path d="M70 165h260" stroke="#89966B" stroke-width="1.5" opacity=".8"/><circle cx="96" cy="130" r="4" fill="#A8B18A"/><circle cx="236" cy="62" r="4" fill="#A8B18A"/><rect x="300" y="52" width="34" height="26" rx="6" fill="#A8B18A" opacity=".5"/></svg>`
   };
+
+  /* ================= WELCOME ENTRY PAGE (NO LOGIN REQUIRED) ================= */
+  App.Routes.welcome = {
+    title: 'Welcome Hub',
+    crumb: 'Home · Engineering Studio Hub',
+    render() {
+      const expCards = (App.E && App.E.EXPERIMENTS ? App.E.EXPERIMENTS : []).map(exp => `
+        <div class="exp-hub-card">
+          <div>
+            <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:6px">
+              <span class="sim-tag">EXP ${exp.num}</span>
+              <span class="e-tag" style="font-size:9.5px;padding:2px 7px;border-radius:6px;background:rgba(197,166,106,.15);color:var(--gold-dark);font-weight:700">${exp.tier}</span>
+            </div>
+            <h3>${App.I(exp.icon, 16)} ${App.esc(exp.title)}</h3>
+            <p class="small muted" style="margin:5px 0 8px;line-height:1.4">${App.esc(exp.tagline)}</p>
+            <div class="elements-pill">
+              ${exp.elements.map(e => `<span class="pill">${e.count}× ${App.esc(e.name)}</span>`).join('')}
+            </div>
+          </div>
+          <div class="acts">
+            <button class="btn sm primary" data-launch-exp="${exp.id}" style="width:100%">${App.I('play', 12)} Start Guided Experiment</button>
+          </div>
+        </div>
+      `).join('');
+
+      return `
+      <div class="welcome-container" style="max-width:1200px;margin:0 auto">
+        <div class="welcome-hero">
+          <div style="position:relative;z-index:2">
+            <div class="row" style="margin-bottom:12px">
+              <span class="chip gold">${App.I('zap', 13)} Zero Sign-Up Required</span>
+              <span class="chip line">${App.I('shield', 13)} 100% Offline &amp; Private</span>
+              <span class="chip">${App.I('check', 13)} Live Guided Circuits</span>
+            </div>
+            <h1>Design, Wire &amp; Simulate Real Circuits in Your Browser</h1>
+            <p class="lead">Step into an interactive physics and electronics playground. Choose an experiment, follow live step-by-step guidance with glowing terminal indicators on the breadboard, or build and simulate your own hardware from scratch.</p>
+            <div class="btn-row" style="gap:10px">
+              <a href="#/electronics" class="btn primary" style="padding:11px 18px;font-size:13.5px">${App.I('cpu', 17)} Launch Electronics Lab</a>
+              <button class="btn gold" id="btn-quick-exp" style="padding:11px 18px;font-size:13.5px">${App.I('play', 17)} Guided First Light Experiment</button>
+              <a href="#/simulation" class="btn ghost" style="padding:11px 18px;font-size:13.5px">${App.I('activity', 17)} Mission Control</a>
+              <a href="#/dashboard" class="btn ghost" style="padding:11px 18px;font-size:13.5px">${App.I('grid', 17)} Open Dashboard</a>
+            </div>
+          </div>
+          <svg class="botanical" width="340" height="240" viewBox="0 0 340 240" fill="none" style="position:absolute;right:-20px;bottom:-20px;opacity:.28;pointer-events:none"><path d="M10 230c100-8 160-50 180-140" stroke="#89966B" stroke-width="2.5"/><path d="M70 180c26-3 48-24 52-56-32 3-54 24-52 56zM120 130c26-3 48-24 52-56-32 3-54 24-52 56zM40 210c26-3 48-24 52-56-32 3-54 24-52 56z" fill="#89966B"/></svg>
+        </div>
+
+        <div style="margin-bottom:28px">
+          <div class="spread" style="margin-bottom:14px">
+            <div>
+              <h2 style="font-size:20px;display:flex;align-items:center;gap:8px">${App.I('compass', 18)} Live Self-Guided Experiments</h2>
+              <p class="sub">Select any experiment below. The studio guides you on which components to place and highlights exact terminal pins on the breadboard.</p>
+            </div>
+            <a href="#/electronics" class="btn sm ghost">${App.I('cpu', 12)} Open Blank Breadboard</a>
+          </div>
+          <div class="grid c4" style="grid-template-columns:repeat(auto-fill,minmax(250px,1fr))">
+            ${expCards}
+          </div>
+        </div>
+
+        <div style="margin-bottom:28px">
+          <h2 style="font-size:20px;margin-bottom:6px;display:flex;align-items:center;gap:8px">${App.I('layers', 18)} Explore The Three Laboratories</h2>
+          <p class="sub" style="margin-bottom:14px">CircuitVerse Studio unites digital electronics, orbital aerospace dynamics, and mission control telemetry.</p>
+          <div class="grid c3" style="grid-template-columns:repeat(auto-fit,minmax(310px,1fr))">
+            <div class="card lab-card">
+              ${LAB_ART.electronics}
+              <div class="meta"><span class="chip">LAB 01</span><span class="sub">Breadboard &amp; Schematics</span></div>
+              <h3>Electronics Lab</h3>
+              <p class="desc">Interactive digital breadboard wiring, LED physics, 555 timers, DC motors, logic gates, and live oscilloscope analysis.</p>
+              <div class="acts">
+                <a href="#/electronics" class="btn primary sm" style="width:100%">${App.I('cpu', 13)} Launch Electronics Lab</a>
+              </div>
+            </div>
+            <div class="card lab-card">
+              ${LAB_ART.aerospace}
+              <div class="meta"><span class="chip">LAB 02</span><span class="sub">Orbital Dynamics</span></div>
+              <h3>Aerospace Lab</h3>
+              <p class="desc">Real-time rocket ascent trajectory, multi-stage engine staging, atmospheric drag, and 3D satellite Keplerian orbits.</p>
+              <div class="acts">
+                <a href="#/aerospace" class="btn primary sm" style="width:100%">${App.I('rocket', 13)} Launch Aerospace Lab</a>
+              </div>
+            </div>
+            <div class="card lab-card">
+              ${LAB_ART.simulation}
+              <div class="meta"><span class="chip">LAB 03</span><span class="sub">Live Telemetry</span></div>
+              <h3>Mission Control</h3>
+              <p class="desc">Live telemetry stripcharts, attitude stabilization PID controls, annunciator alert panels, and flight data recording.</p>
+              <div class="acts">
+                <a href="#/simulation" class="btn primary sm" style="width:100%">${App.I('activity', 13)} Launch Mission Control</a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="welcome-grid">
+          <div class="feature-card">
+            <div class="feat-icon">${App.I('zap', 20)}</div>
+            <h3>Instant Access, Zero Friction</h3>
+            <p>No login forms, passwords, or authentication hurdles. Your workspace is always ready and automatically saved in your browser.</p>
+          </div>
+          <div class="feature-card">
+            <div class="feat-icon">${App.I('glove', 20)}</div>
+            <h3>Live Guided Circuit Assistance</h3>
+            <p>Step-by-step element recommendations with pulsing target halos on exact connection terminals so you never get stuck.</p>
+          </div>
+          <div class="feature-card">
+            <div class="feat-icon">${App.I('play', 20)}</div>
+            <h3>Real-Time Simulation Engine</h3>
+            <p>Completed circuits work immediately! LEDs glow, 555 timers oscillate at frequency, and DC motors spin under load.</p>
+          </div>
+          <div class="feature-card">
+            <div class="feat-icon">${App.I('branch', 20)}</div>
+            <h3>GitHub &amp; Project Export</h3>
+            <p>Export circuits as high-res schematics, save JSON projects, or generate full GitHub repository ZIP bundles anytime.</p>
+          </div>
+        </div>
+      </div>`;
+    },
+    mount() {
+      const qBtn = document.getElementById('btn-quick-exp');
+      if (qBtn) {
+        qBtn.addEventListener('click', () => {
+          App.E.setExperiment('first_light');
+          App.Router.go('electronics');
+        });
+      }
+      document.querySelectorAll('[data-launch-exp]').forEach(btn => {
+        btn.addEventListener('click', e => {
+          const id = e.currentTarget.dataset.launchExp;
+          App.E.setExperiment(id);
+          App.Router.go('electronics');
+        });
+      });
+    }
+  };
+  App.Routes.login = App.Routes.welcome;
+
   const labStat = lab => {
     const ms = App.MISSIONS.filter(m => m.lab === lab);
     const p = App.Profile.get();
@@ -3900,7 +5291,9 @@ SL.drawWave = function () {
     render() {
       const s = App.Store.state.settings;
       const st = App.Store.state;
-      const size = App.bytes(JSON.stringify(st).length);
+      const rawLen = JSON.stringify(st).length;
+      const size = App.bytes(rawLen);
+      const pct = Math.min(100, Math.max(1, Math.round(rawLen / 5242880 * 100)));
       const T = (k, label, desc) => `<div class="insp-row" style="padding:12px 0"><div><b style="font-size:13.5px">${label}</b><div class="tiny muted">${desc}</div></div><button class="toggle ${s[k] ? 'on' : ''}" data-set="${k}"></button></div>`;
       return `
       <div class="grid c2" style="max-width:900px">
@@ -3914,9 +5307,12 @@ SL.drawWave = function () {
           <div class="card">
             <h3>${I('save', 15)} Your data (${size})</h3>
             <p class="small muted">Everything — accounts, projects, sessions, feedback — lives in this browser's local storage. Export a backup file to move it or keep it safe.</p>
-            <div class="btn-row">
+            <div class="progress" style="margin:10px 0 4px"><i style="width:${pct}%"></i></div>
+            <div class="tiny muted">${size} used of ~5 MB typical browser quota · ${st.simSessions.length} simulation recording${st.simSessions.length === 1 ? '' : 's'} stored. Tip: other apps hosted on the same site domain share this quota.</div>
+            <div class="btn-row" style="margin-top:10px">
               <button class="btn sm primary" id="st-export">${I('download', 13)} Export all data</button>
               <label class="btn sm ghost" style="position:relative">${I('upload', 13)} Import backup<input type="file" id="st-import" accept=".json" style="position:absolute;inset:0;opacity:0;cursor:pointer"></label>
+              <button class="btn sm ghost" id="st-prune">${I('reset', 13)} Free up space</button>
               <button class="btn sm danger" id="st-clear">${I('trash', 13)} Clear everything</button>
             </div>
           </div>
@@ -3939,6 +5335,12 @@ SL.drawWave = function () {
       document.getElementById('st-export').addEventListener('click', () => {
         App.download('circuitverse_backup.json', App.Store.exportAll(), 'application/json');
         App.UI.toast('Backup exported.');
+      });
+      document.getElementById('st-prune').addEventListener('click', () => {
+        const removed = App.Store.pruneSessions(5);
+        App.Store.saveNow();
+        App.UI.toast(removed ? removed + ' old simulation recording(s) cleared — ' + App.bytes(JSON.stringify(App.Store.state).length) + ' now in use.' : 'Nothing to clear — fewer than 5 recordings stored.');
+        App.Router.render();
       });
       document.getElementById('st-import').addEventListener('change', e => {
         const f = e.target.files[0];
@@ -4119,14 +5521,16 @@ App.Routes.projects = {
     });
     document.getElementById('pj-sort').addEventListener('change', e => { state.sort = e.target.value; renderGrid(); });
     document.getElementById('pj-new').addEventListener('click', () => {
-      App.UI.prompt('New project', `<div class="field"><label>Project name</label><input class="input" name="name" placeholder="e.g. Satellite Power Monitor" maxlength="60"></div>
-        <div class="field"><label>Description</label><textarea class="input" name="desc" placeholder="What are you building?"></textarea></div>
-        <div class="field"><label>Primary lab</label><select class="input" name="lab"><option value="electronics">Electronics Lab</option><option value="aerospace">Aerospace Lab</option><option value="simulation">Simulation Lab</option></select></div>`).then(v => {
-        if (!v) return;
-        const pr = App.Projects.create(v.name, v.desc, v.lab);
-        App.UI.toast('Project "' + pr.name + '" created.');
-        renderGrid();
-      });
+      App.Auth.requireLogin(() => {
+        App.UI.prompt('New project', `<div class="field"><label>Project name</label><input class="input" name="name" placeholder="e.g. Satellite Power Monitor" maxlength="60"></div>
+          <div class="field"><label>Description</label><textarea class="input" name="desc" placeholder="What are you building?"></textarea></div>
+          <div class="field"><label>Primary lab</label><select class="input" name="lab"><option value="electronics">Electronics Lab</option><option value="aerospace">Aerospace Lab</option><option value="simulation">Simulation Lab</option></select></div>`).then(v => {
+          if (!v) return;
+          const pr = App.Projects.create(v.name, v.desc, v.lab);
+          App.UI.toast('Project "' + pr.name + '" created.');
+          renderGrid();
+        });
+      }, 'Create & Save Project');
     });
     renderGrid();
   }
